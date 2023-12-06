@@ -29,7 +29,7 @@ header {
 
 h1 {
   overflow-wrap: break-word;
-  font-size: clamp(4vw, 5vw, 3rem);
+  font-size: clamp(3.5vw, 4.5vw, 3rem);
   flex-shrink: 1;
   z-index: 200;
 }
