@@ -5,41 +5,15 @@ import HollowTriangle from "./components/HollowTriangle";
 import "./App.css";
 import CircleSVG from "./components/CircleSVG";
 
-
-
-
-
-
-
-
-
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
-  const givenText = [
-    "șase sași în șase saci",
-    "Noi nu ne nimeriserăm minunăţiile lănţişoarelor remunerate",
-    "Clopotarul clătina clopotul clopotniței.",
-    "Ora nouă, nouă ouă, găinușa ouă după ora nouă.",
-    "Zecele de pică mare are masa la picioare.",
-    "Domnule dudar, dă-mi două dude dulci din dudul dumitale de dincolo de Dunăre!",
-    "O barză brează face zarvă pe-o varză",
-    "Nașpa, nasol stau în nămol ca un actor jucând un rol!",
-    "Capra calca-n piatra,Piatra crapa-n patru; Crăpa-i-ar capul caprei, Precum a crapat piatra-n patru.",
-    "Un vultur stă pe-un pisc c-un pix în plisc",
-    "Leul lăudat lipește abțibilduri lucioase.",
-    "Sașa şuşotea șosetelor însuşiri şiruitoare.",
-    "Bucur și Bucura se bucură că Bucurel e bucuros în București.",
-    "Am o prepeliţă pestriţă cu paisprezece pui de prepeliţă pestriţi. E mai pestriţă prepeliţa pestriţă decât cei paisprezece pui de prepeliţă pestriţi.",
-    "O coropișniță și-un coropișnițoi se coropișniteau la noi pe gunoi. Nu coropișnița coropișnițea pe coropișnițoi, ci coropișnițoiul coropișnițea pe coropișniță.",
-  ]; // Set your desired text here
   const [animationKey, setAnimationKey] = useState(0);
-
-  const resetAnimation = () => {
-    // Incrementing the animationKey will re-render the component
-    setAnimationKey((prevKey) => prevKey + 1);
-  };
+  
+  
+  const [speechEnd , setSpeechEnd] = useState<boolean>(true)
+  
+  
   const [index, setIndex] = useState<number>(0);
-
   const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
   const [feeling, setFeeting] = useState<string>(" ");
 
@@ -49,33 +23,50 @@ const VoiceInput: React.FC = () => {
 
 
 
+    const givenText = [
+      "șase sași în șase saci",
+      "Noi nu ne nimeriserăm minunăţiile lănţişoarelor remunerate",
+      "Clopotarul clătina clopotul clopotniței.",
+      "Ora nouă, nouă ouă, găinușa ouă după ora nouă.",
+      "Zecele de pică mare are masa la picioare.",
+      "Domnule dudar, dă-mi două dude dulci din dudul dumitale de dincolo de Dunăre!",
+      "O barză brează face zarvă pe-o varză",
+      "Nașpa, nasol stau în nămol ca un actor jucând un rol!",
+      "Capra calca-n piatra,Piatra crapa-n patru; Crăpa-i-ar capul caprei, Precum a crapat piatra-n patru.",
+      "Un vultur stă pe-un pisc c-un pix în plisc",
+      "Leul lăudat lipește abțibilduri lucioase.",
+      "Sașa şuşotea șosetelor însuşiri şiruitoare.",
+      "Bucur și Bucura se bucură că Bucurel e bucuros în București.",
+      "Am o prepeliţă pestriţă cu paisprezece pui de prepeliţă pestriţi. E mai pestriţă prepeliţa pestriţă decât cei paisprezece pui de prepeliţă pestriţi.",
+      "O coropișniță și-un coropișnițoi se coropișniteau la noi pe gunoi. Nu coropișnița coropișnițea pe coropișnițoi, ci coropișnițoiul coropișnițea pe coropișniță.",
+    ]; // Set your desired text here
 
-    // I dont know how to Fix type error of SpeechRecognition
-   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-   //@ts-expect-error
-  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const resetAnimation = () => {
+      // Incrementing the animationKey will re-render the component
+      setAnimationKey((prevKey) => prevKey + 1);
+    };
+  // I dont know how to Fix type error of SpeechRecognition
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  window.SpeechRecognition =window.SpeechRecognition || window.webkitSpeechRecognition;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognition = new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition()  ;
-
+  const recognition = new (window as any).SpeechRecognition() ||new (window as any).webkitSpeechRecognition();
 
   const handleVoiceInput = () => {
     recognition.interimResults = true;
     recognition.lang = "ro-RO";
-    recognition.continuous = false
+    recognition.continuous = false;
 
     recognition.onaudiostart = () => {
+      setSpeechEnd(false)
       documentBody.style.backgroundColor = "#E5E581";
       startButton.style.backgroundColor = "#79d2c4";
 
       // Make the background a color
       console.log("Audio started");
     };
-    // recognition.onspeechend = () => {
-    //   console.log("lame");
-      
-    // }
-
+  
     recognition.onspeechend = () => {
       recognition.stop();
       console.log("Speech recognition has stopped.");
@@ -86,11 +77,12 @@ const VoiceInput: React.FC = () => {
       // console.log(animatedText);
       // const speech: HTMLElement = document.querySelector(".spoken-text")!;
       // console.log(animatedText);
-
+      recognition.stop();
+      console.log("audio has stoped");
+      
       documentBody.style.backgroundColor = "#fafaf0";
       startButton.style.backgroundColor = "#E5E580";
       // Change background to default
-
 
       //     console.log("Audio ended");
       //     if (similarityPercentage > 90) {
@@ -107,7 +99,12 @@ const VoiceInput: React.FC = () => {
 
       //       }, 1000);
       // }, 1000);}
+      setSpeechEnd(true)
+   
     };
+ 
+ 
+    
 
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
       const transcript: string = event.results[0][0].transcript;
@@ -119,40 +116,36 @@ const VoiceInput: React.FC = () => {
       );
       const maxLength = Math.max(transcript.length, givenText[index].length);
       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
-    
 
       setSimilarityPercentage(similarity);
+      
+ 
+    };
+ 
+    recognition.onerror = (event: { error: string }) => {
+      console.error("Speech recognition error", event.error);
+    };
 
-      const animatedText: HTMLElement =
+    recognition.start();
+  };
+ 
+if(speechEnd && similarityPercentage > 95){
+       const animatedText: HTMLElement =
         document.querySelector(".animated-text")!;
 
       const speech: HTMLElement = document.querySelector(".spoken-text")!;
 
-     
-      if (similarity > 95) {
+        
         setTimeout(() => {
-       
-
-       
           animatedText.classList.add("slide-in");
           speech.classList.add("slide-in");
 
           setTimeout(() => {
             handleFront();
-          
           }, 1000);
         }, 1000);
-      }
-    };
-    console.log(recognition);
-    recognition.onerror = (event: { error:string; }) => {
-      console.error('Speech recognition error', event.error);
-    };
     
-    recognition.start();
-
-  };
-
+}
 
   const handleStopListening = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
