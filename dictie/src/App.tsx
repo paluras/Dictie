@@ -40,7 +40,7 @@ const VoiceInput: React.FC = () => {
     document.querySelector(".start-btn")!;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognition = new (window as any).webkitSpeechRecognition();
+  const recognition = new (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
   const handleVoiceInput = () => {
     recognition.interimResults = true;
