@@ -34,14 +34,10 @@ const VoiceInput: React.FC = () => {
 
   const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
   const [feeling, setFeeting] = useState<string>(" ");
-  
 
-  
   const documentBody = document.body;
   const startButton: HTMLButtonElement | null =
     document.querySelector(".start-btn")!;
-
-
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognition = new (window as any).webkitSpeechRecognition();
@@ -59,24 +55,33 @@ const VoiceInput: React.FC = () => {
     };
 
     recognition.onaudioend = () => {
-      const animatedText : HTMLElement = document.querySelector(".animated-text")!;
-      console.log(animatedText);
-      const speech : HTMLElement = document.querySelector(".spoken-text")!;
-      console.log(animatedText);
+      // const animatedText: HTMLElement =
+      //   document.querySelector(".animated-text")!;
+      // console.log(animatedText);
+      // const speech: HTMLElement = document.querySelector(".spoken-text")!;
+      // console.log(animatedText);
+
       documentBody.style.backgroundColor = "#fafaf0";
       startButton.style.backgroundColor = "#E5E580";
       // Change background to default
-      console.log("Audio ended");
-      setTimeout(()=>{
-        console.log("2sec");
-        animatedText.classList.add('slide-in');
-        speech.classList.add('slide-in');
-        setTimeout(()=>{
-          handleFront()
-          console.log("front");
-          
-        },1000)
-      },1000)
+
+      console.log(similarityPercentage, "outside");
+
+      //     console.log("Audio ended");
+      //     if (similarityPercentage > 90) {
+      //     setTimeout(() => {
+      //       console.log(similarityPercentage);
+
+      //       console.log("2sec");
+      //       animatedText.classList.add("slide-in");
+      //       speech.classList.add("slide-in");
+
+      //       setTimeout(() => {
+      //         handleFront();
+      //         console.log("front");
+
+      //       }, 1000);
+      // }, 1000);}
     };
 
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
@@ -89,7 +94,30 @@ const VoiceInput: React.FC = () => {
       );
       const maxLength = Math.max(transcript.length, givenText[index].length);
       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
+      console.log(similarity);
+
       setSimilarityPercentage(similarity);
+
+      const animatedText: HTMLElement =
+        document.querySelector(".animated-text")!;
+
+      const speech: HTMLElement = document.querySelector(".spoken-text")!;
+
+      console.log("Audio ended");
+      if (similarity > 95) {
+        setTimeout(() => {
+          console.log(similarityPercentage);
+
+          console.log("2sec");
+          animatedText.classList.add("slide-in");
+          speech.classList.add("slide-in");
+
+          setTimeout(() => {
+            handleFront();
+            console.log("front");
+          }, 1000);
+        }, 1000);
+      }
     };
 
     recognition.start();
@@ -102,16 +130,17 @@ const VoiceInput: React.FC = () => {
   };
 
   useEffect(() => {
-    similarityPercentage <= 50
-    ? setFeeting("😔 Poți face mai bine")
-    : similarityPercentage > 50 && similarityPercentage < 80
-    ? setFeeting("😯 Te apropii!")
-    : similarityPercentage > 80 && similarityPercentage < 90
-    ? setFeeting("😃 Lucru excelent!")
-    : similarityPercentage > 90
-    ? setFeeting("😍 Ai făcut uimitor!")
-    : setFeeting("");
-  
+    similarityPercentage < 5
+      ? setFeeting("😊 Sa incepem")
+      : similarityPercentage <= 50
+      ? setFeeting("😔 Poți face mai bine")
+      : similarityPercentage > 50 && similarityPercentage < 80
+      ? setFeeting("😯 Te apropii!")
+      : similarityPercentage > 80 && similarityPercentage < 90
+      ? setFeeting("😃 Lucru excelent!")
+      : similarityPercentage > 90
+      ? setFeeting("😍 Ai făcut uimitor!")
+      : setFeeting("");
   }, [similarityPercentage]);
 
   const handleBack = () => {
@@ -123,19 +152,21 @@ const VoiceInput: React.FC = () => {
     setIndex((prev) => prev + 1);
     setSpokenText("");
     resetAnimation();
+    setSimilarityPercentage(0);
   };
 
   return (
     <>
       <header>
-        <div>Dictie!</div>
+        <h1 style={{ position: "absolute", top: "5px", margin: "0" }}>
+          Dictie!
+        </h1>
       </header>
       <main>
         <div className="absolute-animations">
           {" "}
           <HollowTriangle animationKey={animationKey} />
           <CircleSVG animationKey={animationKey} />
-        
         </div>
 
         <div className="container-given-text">
@@ -148,7 +179,7 @@ const VoiceInput: React.FC = () => {
             Back
           </button>
           <p>
-          Procent de Similaritate: {similarityPercentage.toFixed(1)}% <br />
+            Procent de Similaritate: {similarityPercentage.toFixed(1)}% <br />
             {feeling}
           </p>
           {/* Make function to add the overall score somewhere and reset it */}
@@ -156,22 +187,22 @@ const VoiceInput: React.FC = () => {
             Next
           </button>
         </div>
-      
 
         <div className="container-btns">
           {" "}
           <button className="start-btn" onClick={handleVoiceInput}>
-          Porniți Înregistrarea Vocală
+            Porniți Înregistrarea Vocală
           </button>
           <button className="stop" onClick={handleStopListening}>
             Stop
           </button>
         </div>
         {spokenText && (
-          <h2 className="spoken-text">
-            Am inteles: <br />
-            {spokenText}
-          </h2>
+          <div className="spoken-text">
+            <h2 className="h2-title"> Dictio-metrul a inteles:</h2>
+
+            <h3 className="spoken">{spokenText}</h3>
+          </div>
         )}
       </main>
       <footer></footer>

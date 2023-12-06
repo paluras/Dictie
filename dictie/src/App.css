@@ -33,10 +33,7 @@ h1 {
   flex-shrink: 1;
   z-index: 200;
 }
-h2 {
-  max-width: 80vw;
-  z-index: 200;
-}
+
 
 button {
   background-color: var(--primary);
@@ -58,9 +55,22 @@ button {
   background-image: url("../public/vite.svg");
 }
 
-.container-half-ring{
+.spoken-text{
+  z-index: 100;
+ 
   
+ 
+ 
+}
+.spoken{
+ color:var(--text-second);
+ margin: 0 0 ;
 
+}
+.h2-title{
+  height: 50px;
+  margin-bottom:0 ;
+  
 }
 
 .half-ring {
