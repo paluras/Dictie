@@ -5,6 +5,14 @@ import HollowTriangle from "./components/HollowTriangle";
 import "./App.css";
 import CircleSVG from "./components/CircleSVG";
 
+
+
+
+
+
+
+
+
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
   const givenText = [
@@ -39,8 +47,17 @@ const VoiceInput: React.FC = () => {
   const startButton: HTMLButtonElement | null =
     document.querySelector(".start-btn")!;
 
+
+
+
+    // I dont know how to Fix type error of SpeechRecognition
+   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+   //@ts-expect-error
+  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognition = new (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+  const recognition = new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition()  ;
+
 
   const handleVoiceInput = () => {
     recognition.interimResults = true;
@@ -53,7 +70,10 @@ const VoiceInput: React.FC = () => {
       // Make the background a color
       console.log("Audio started");
     };
-
+    recognition.onspeechend = () => {
+      console.log("lame");
+      
+    }
     recognition.onaudioend = () => {
       // const animatedText: HTMLElement =
       //   document.querySelector(".animated-text")!;
@@ -65,7 +85,6 @@ const VoiceInput: React.FC = () => {
       startButton.style.backgroundColor = "#E5E580";
       // Change background to default
 
-      console.log(similarityPercentage, "outside");
 
       //     console.log("Audio ended");
       //     if (similarityPercentage > 90) {
@@ -94,7 +113,7 @@ const VoiceInput: React.FC = () => {
       );
       const maxLength = Math.max(transcript.length, givenText[index].length);
       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
-      console.log(similarity);
+    
 
       setSimilarityPercentage(similarity);
 
@@ -103,25 +122,27 @@ const VoiceInput: React.FC = () => {
 
       const speech: HTMLElement = document.querySelector(".spoken-text")!;
 
-      console.log("Audio ended");
+     
       if (similarity > 95) {
         setTimeout(() => {
-          console.log(similarityPercentage);
+       
 
-          console.log("2sec");
+       
           animatedText.classList.add("slide-in");
           speech.classList.add("slide-in");
 
           setTimeout(() => {
             handleFront();
-            console.log("front");
+          
           }, 1000);
         }, 1000);
       }
     };
-
+   
     recognition.start();
+
   };
+
 
   const handleStopListening = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
