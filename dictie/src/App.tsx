@@ -62,6 +62,7 @@ const VoiceInput: React.FC = () => {
   const handleVoiceInput = () => {
     recognition.interimResults = true;
     recognition.lang = "ro-RO";
+    recognition.continuous = false
 
     recognition.onaudiostart = () => {
       documentBody.style.backgroundColor = "#E5E581";
@@ -144,6 +145,9 @@ const VoiceInput: React.FC = () => {
       }
     };
     console.log(recognition);
+    recognition.onerror = (event: { error:string; }) => {
+      console.error('Speech recognition error', event.error);
+    };
     
     recognition.start();
 
