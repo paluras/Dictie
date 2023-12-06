@@ -1,0 +1,147 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  padding:0 20px;
+  height: 100vh;
+}
+header {
+  padding: 20px;
+}
+.container-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.stop {
+  width: 50%;
+}
+
+.container-mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+}
+
+h1 {
+  overflow-wrap: break-word;
+  font-size: clamp(4vw, 5vw, 3rem);
+  flex-shrink: 1;
+  z-index: 200;
+}
+h2 {
+  max-width: 80vw;
+  z-index: 200;
+}
+
+button {
+  background-color: var(--primary);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  font-weight: 500;
+  transition: background-color 500ms ease-in;
+}
+.start-btn {
+  background-color: var(--secondary);
+}
+
+/* Need a disclaimer for audio and speech api perception */
+.info {
+  width: 10px;
+  height: 10px;
+  background-image: url("../public/vite.svg");
+}
+
+.container-half-ring{
+  
+
+}
+
+.half-ring {
+
+  fill: none;
+  stroke: #3498db;
+  stroke-width: 20;
+  transform-origin: center;
+  animation: rotate 1s ease;
+}
+
+.triangle {
+  width: 277.128px;
+  height: 240px;
+  transition: 500ms ease-in;
+
+  overflow: hidden;
+  position: absolute;
+  /* fill: none; */
+
+  right: -100px;
+  bottom: 100px;
+
+  stroke: var(--accent);
+  animation: rotate-half-reverse 1s ease;
+}
+.container-given-text {
+  display: flex;
+  overflow: hidden;
+  height: clamp(30vh, 40vh, 50vh);
+
+  max-width: 90vw;
+  align-items: center;
+}
+
+.animated-text {
+  animation: appearText 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
+  overflow: hidden;
+  transition: 1s;
+}
+
+
+@keyframes appearText {
+  0% {
+    transform: translateY(-400px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+@keyframes disappearText {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(400px);
+  }
+}
+@keyframes rotate-half-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: translateX(15px) translateY(42px) rotate(-240deg);
+  }
+}
+
+.slide-in{
+  animation:disappearText 500ms cubic-bezier(0.66, 0.07, 0.51, 1.52);
+  transform: translateY(400px);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

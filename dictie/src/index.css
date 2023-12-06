@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+
+body {
+  font-family: 'Poppins';
+  font-weight: 400;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins';
+  font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+ /* h1 {font-size: 3.366rem;} */
+ /* 53.92px; */
+
+h2 {font-size: 2.525rem; /* 40.32px */}
+
+h3 {font-size: 1.894rem; /* 30.24px */}
+
+h4 {font-size: 1.421rem; /* 22.72px */}
+
+h5 {font-size: 1.066rem; /* 17.12px */}
+
+small {font-size: 0.600rem; /* 9.6px */}
+
+button{
+  font-family: 'Poppins';
+}
+
+
+:root {
+  margin: 0;
+  --text: #1a1908;
+  --background: #fafaf0;
+  --primary: #d0deff;
+  --secondary: #E5E580;
+  --accent: #79d2c4;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text);
+  background-color: var(--background);
+ 
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+body{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  margin: 0;
+ 
+  transition: background-color 500ms ease-in;
+}
+
