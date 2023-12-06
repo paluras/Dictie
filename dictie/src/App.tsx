@@ -128,17 +128,25 @@ const VoiceInput: React.FC = () => {
 
     recognition.start();
   };
+
+  const animatedText: HTMLElement =
+  document.querySelector(".animated-text")!;
+
+const speech: HTMLElement = document.querySelector(".spoken-text")!;
+
+const addAnimation = () => {
+  animatedText.classList.add("slide-in");
+  speech?.classList.add("slide-in");
+}
+
+
  
 if(speechEnd && similarityPercentage > 95){
-       const animatedText: HTMLElement =
-        document.querySelector(".animated-text")!;
-
-      const speech: HTMLElement = document.querySelector(".spoken-text")!;
+      
 
         
         setTimeout(() => {
-          animatedText.classList.add("slide-in");
-          speech.classList.add("slide-in");
+          addAnimation()
 
           setTimeout(() => {
             handleFront();
@@ -172,11 +180,21 @@ if(speechEnd && similarityPercentage > 95){
     setSpokenText("");
     resetAnimation();
   };
+
+  
   const handleFront = () => {
-    setIndex((prev) => prev + 1);
-    setSpokenText("");
-    resetAnimation();
-    setSimilarityPercentage(0);
+   
+    
+    addAnimation()
+    setTimeout(()=>{
+      setIndex((prev) => prev + 1);
+      setSpokenText("");
+      resetAnimation();
+      setSimilarityPercentage(0);
+  
+    },500)
+   
+   
   };
 
   return (
@@ -223,7 +241,7 @@ if(speechEnd && similarityPercentage > 95){
         </div>
         {spokenText && (
           <div className="spoken-text">
-            <h2 className="h2-title"> Dictio-metrul a inteles:</h2>
+            <h2 className="h2-title"> Dictie-metrul a inteles:</h2>
 
             <h3 className="spoken">{spokenText}</h3>
           </div>
