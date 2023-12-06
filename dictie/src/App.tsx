@@ -70,10 +70,15 @@ const VoiceInput: React.FC = () => {
       // Make the background a color
       console.log("Audio started");
     };
-    recognition.onspeechend = () => {
-      console.log("lame");
+    // recognition.onspeechend = () => {
+    //   console.log("lame");
       
-    }
+    // }
+
+    recognition.onspeechend = () => {
+      recognition.stop();
+      console.log("Speech recognition has stopped.");
+    };
     recognition.onaudioend = () => {
       // const animatedText: HTMLElement =
       //   document.querySelector(".animated-text")!;
@@ -138,7 +143,8 @@ const VoiceInput: React.FC = () => {
         }, 1000);
       }
     };
-   
+    console.log(recognition);
+    
     recognition.start();
 
   };
