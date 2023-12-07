@@ -10,10 +10,25 @@ const VoiceInput: React.FC = () => {
   const [animationKey, setAnimationKey] = useState(0);
 
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
-
+ 
+ 
+//  thinkk of another logic for this
+  const [displayNone , setDisplayNone] = useState<string>("flex")
+  const [displayNoneRev , setDisplayNoneRev] = useState<string>("none")
+  
+  
+  
+  
   const [index, setIndex] = useState<number>(0);
   const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
   const [feeling, setFeeting] = useState<string>(" ");
+
+
+
+
+
+
+  
 
   const documentBody = document.body;
   const startButton: HTMLButtonElement | null =
@@ -56,6 +71,8 @@ const VoiceInput: React.FC = () => {
 
     recognition.onaudiostart = () => {
       setSpeechEnd(false);
+      setDisplayNone("none")
+      setDisplayNoneRev("flex")
       documentBody.style.backgroundColor = "#E5E581";
       startButton.style.backgroundColor = "#79d2c4";
 
@@ -96,12 +113,17 @@ const VoiceInput: React.FC = () => {
       //       }, 1000);
       // }, 1000);}
       setSpeechEnd(true);
+      setDisplayNone("flex")
+      setDisplayNoneRev("none")
     };
     const stopBtn : HTMLElement = document.querySelector(".stop") as HTMLElement;
-    stopBtn.onclick = () => {
+    
+   
+      stopBtn.onclick = () => {
       recognition.abort();
       console.log("Speech recognition aborted.");
-    };
+    }
+   
 
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
       const transcript: string = event.results[0][0].transcript;
@@ -216,10 +238,13 @@ const VoiceInput: React.FC = () => {
 
         <div className="container-btns">
           {" "}
-          <button className="start-btn" onClick={handleVoiceInput}>
+   
+         <button style={{display:displayNone}} className="start-btn" onClick={handleVoiceInput}>
             Porniți Înregistrarea Vocală
-          </button>
-          <button className="stop">Stop</button>
+          </button> 
+          <button style={{display:displayNoneRev}} className="stop">Stop</button> 
+         
+          
         </div>
         {spokenText && (
           <div className="spoken-text">

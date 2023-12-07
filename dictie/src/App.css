@@ -32,7 +32,7 @@ header {
 
 h1 {
   overflow-wrap: break-word;
-  font-size: clamp(6vw, 7vw, 3rem);
+  font-size: 3rem;
   flex-shrink: 1;
   z-index: 200;
 }
@@ -49,6 +49,13 @@ button {
 }
 .start-btn {
   background-color: var(--secondary);
+}
+
+.stop{
+  display: flex;
+  width: 150px;
+  justify-content: center;
+ 
 }
 
 /* Need a disclaimer for audio and speech api perception */
