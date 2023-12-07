@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import levenshteinDistance from "./utils/levensheinDistance";
 import filterAlphabetic from "./utils/filterAlphabetic";
 import HollowTriangle from "./components/HollowTriangle";
@@ -10,25 +10,20 @@ const VoiceInput: React.FC = () => {
   const [animationKey, setAnimationKey] = useState(0);
 
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
- 
- 
-//  thinkk of another logic for this
-  const [displayNone , setDisplayNone] = useState<string>("flex")
-  const [displayNoneRev , setDisplayNoneRev] = useState<string>("none")
-  
-  
-  
-  
-  const [index, setIndex] = useState<number>(0);
+
+  //  thinkk of another logic for this
+  const [displayNone, setDisplayNone] = useState<string>("flex");
+  const [displayNoneRev, setDisplayNoneRev] = useState<string>("none");
+
+  const index = useRef(0);
+  console.log(index);
+  const incrementCount = () => {
+    index.current += 1;
+    console.log(index.current); // Log the updated count
+  };
+
   const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
-  const [feeling, setFeeting] = useState<string>(" ");
-
-
-
-
-
-
-  
+  const [feeling, setFeeting] = useState<string>("");
 
   const documentBody = document.body;
   const startButton: HTMLButtonElement | null =
@@ -62,7 +57,7 @@ const VoiceInput: React.FC = () => {
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognition =new (window as any).SpeechRecognition() ||new (window as any).webkitSpeechRecognition();
+  const recognition = new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition();
 
   const handleVoiceInput = () => {
     recognition.interimResults = true;
@@ -71,8 +66,8 @@ const VoiceInput: React.FC = () => {
 
     recognition.onaudiostart = () => {
       setSpeechEnd(false);
-      setDisplayNone("none")
-      setDisplayNoneRev("flex")
+      setDisplayNone("none");
+      setDisplayNoneRev("flex");
       documentBody.style.backgroundColor = "#E5E581";
       startButton.style.backgroundColor = "#79d2c4";
 
@@ -112,18 +107,17 @@ const VoiceInput: React.FC = () => {
 
       //       }, 1000);
       // }, 1000);}
+
       setSpeechEnd(true);
-      setDisplayNone("flex")
-      setDisplayNoneRev("none")
+      setDisplayNone("flex");
+      setDisplayNoneRev("none");
     };
-    const stopBtn : HTMLElement = document.querySelector(".stop") as HTMLElement;
-    
-   
-      stopBtn.onclick = () => {
+    const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
+
+    stopBtn.onclick = () => {
       recognition.abort();
       console.log("Speech recognition aborted.");
-    }
-   
+    };
 
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
       const transcript: string = event.results[0][0].transcript;
@@ -131,9 +125,12 @@ const VoiceInput: React.FC = () => {
       // Calculate Levenshtein distance and similarity percentage
       const distance = levenshteinDistance(
         filterAlphabetic(transcript.toLocaleLowerCase()),
-        filterAlphabetic(givenText[index].toLocaleLowerCase())
+        filterAlphabetic(givenText[index.current].toLocaleLowerCase())
       );
-      const maxLength = Math.max(transcript.length, givenText[index].length);
+      const maxLength = Math.max(
+        transcript.length,
+        givenText[index.current].length
+      );
       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
 
       setSimilarityPercentage(similarity);
@@ -154,15 +151,28 @@ const VoiceInput: React.FC = () => {
     animatedText.classList.add("slide-in");
     speech?.classList.add("slide-in");
   };
+  const handleBack = () => {
+    addAnimation();
+    setSpokenText("");
+    resetAnimation();
+    index.current--;
+  };
+
+  const handleFront = () => {
+    console.log(index);
+
+    addAnimation();
+
+    setTimeout(() => {
+      incrementCount();
+      setSpokenText("");
+      resetAnimation();
+      setSimilarityPercentage(0);
+    }, 1000);
+  };
 
   if (speechEnd && similarityPercentage > 95) {
-    setTimeout(() => {
-      addAnimation();
-
-      setTimeout(() => {
-        handleFront();
-      }, 1000);
-    }, 1000);
+    handleFront();
   }
 
   // const handleStopListening = () => {
@@ -187,22 +197,6 @@ const VoiceInput: React.FC = () => {
       : setFeeting("");
   }, [similarityPercentage]);
 
-  const handleBack = () => {
-    setIndex((prev) => prev - 1);
-    setSpokenText("");
-    resetAnimation();
-  };
-
-  const handleFront = () => {
-    addAnimation();
-    setTimeout(() => {
-      setIndex((prev) => prev + 1);
-      setSpokenText("");
-      resetAnimation();
-      setSimilarityPercentage(0);
-    }, 500);
-  };
-
   return (
     <>
       <header>
@@ -219,7 +213,7 @@ const VoiceInput: React.FC = () => {
 
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">
-            {givenText[index]}
+            {givenText[index.current]}
           </h1>
         </div>
         <div className="container-mid">
@@ -238,13 +232,16 @@ const VoiceInput: React.FC = () => {
 
         <div className="container-btns">
           {" "}
-   
-         <button style={{display:displayNone}} className="start-btn" onClick={handleVoiceInput}>
+          <button
+            style={{ display: displayNone }}
+            className="start-btn"
+            onClick={handleVoiceInput}
+          >
             Porniți Înregistrarea Vocală
-          </button> 
-          <button style={{display:displayNoneRev}} className="stop">Stop</button> 
-         
-          
+          </button>
+          <button style={{ display: displayNoneRev }} className="stop">
+            Stop
+          </button>
         </div>
         {spokenText && (
           <div className="spoken-text">
