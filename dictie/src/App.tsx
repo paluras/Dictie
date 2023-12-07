@@ -18,7 +18,7 @@ const VoiceInput: React.FC = () => {
   const index = useRef(0);
   console.log(index);
   const incrementCount = () => {
-    index.current += 1;
+    index.current ++;
     console.log(index.current); // Log the updated count
   };
 
@@ -134,6 +134,14 @@ const VoiceInput: React.FC = () => {
       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
 
       setSimilarityPercentage(similarity);
+
+
+      if (speechEnd && similarity >= 95) {
+        setTimeout(() => {
+          handleFront();
+        },1000)
+       
+      }
     };
 
     recognition.onerror = (event: { error: string }) => {
@@ -143,14 +151,36 @@ const VoiceInput: React.FC = () => {
     recognition.start();
   };
 
-  const animatedText: HTMLElement = document.querySelector(".animated-text")!;
+ 
+  // const addAnimation = () => {
+  //   animatedText.classList.add("slide-in");
+  //   speech?.classList.add("slide-in");
+  // };
 
-  const speech: HTMLElement = document.querySelector(".spoken-text")!;
 
   const addAnimation = () => {
-    animatedText.classList.add("slide-in");
-    speech?.classList.add("slide-in");
+    const animatedText: HTMLElement = document.querySelector(".animated-text")!;
+
+    const speech: HTMLElement = document.querySelector(".spoken-text")!;
+  
+    return new Promise<void>((resolve) => {
+      // Add the animation classes immediately
+      animatedText.classList.add("slide-in");
+      speech?.classList.add("slide-in");
+  
+      // Resolve the promise after a 1-second delay
+      setTimeout(() => {
+        resolve();
+      }, 1000); // 1000 milliseconds = 1 second
+    });
   };
+
+
+
+
+
+
+
   const handleBack = () => {
     addAnimation();
     setSpokenText("");
@@ -158,22 +188,20 @@ const VoiceInput: React.FC = () => {
     index.current--;
   };
 
-  const handleFront = () => {
+  const handleFront = async () => {
     console.log(index);
 
-    addAnimation();
+    await addAnimation();
+    incrementCount();
 
-    setTimeout(() => {
-      incrementCount();
+    
       setSpokenText("");
       resetAnimation();
       setSimilarityPercentage(0);
-    }, 1000);
+  
   };
 
-  if (speechEnd && similarityPercentage > 95) {
-    handleFront();
-  }
+ 
 
   // const handleStopListening = () => {
   //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
