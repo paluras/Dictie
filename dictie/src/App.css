@@ -4,7 +4,7 @@ main {
   align-items: center;
   justify-content: start;
   text-align: center;
-  padding:0 20px;
+  padding: 0 20px;
   height: 100vh;
 }
 header {
@@ -27,7 +27,6 @@ header {
   align-items: center;
   gap: 20px;
   z-index: 100;
-
 }
 
 h1 {
@@ -36,7 +35,6 @@ h1 {
   flex-shrink: 1;
   z-index: 200;
 }
-
 
 button {
   background-color: var(--primary);
@@ -51,11 +49,10 @@ button {
   background-color: var(--secondary);
 }
 
-.stop{
+.stop {
   display: flex;
   width: 150px;
   justify-content: center;
- 
 }
 
 /* Need a disclaimer for audio and speech api perception */
@@ -65,26 +62,19 @@ button {
   background-image: url("../public/vite.svg");
 }
 
-.spoken-text{
+.spoken-text {
   z-index: 100;
- 
-  
- 
- 
 }
-.spoken{
- color:var(--text-second);
- margin: 0 0 ;
-
+.spoken {
+  color: var(--text-second);
+  margin: 0 0;
 }
-.h2-title{
+.h2-title {
   height: 50px;
-  margin-bottom:0 ;
-  
+  margin-bottom: 0;
 }
 
 .half-ring {
-
   fill: none;
   stroke: #3498db;
   stroke-width: 20;
@@ -101,17 +91,63 @@ button {
   position: absolute;
   /* fill: none; */
 
-  right: -100px;
+  right: -150px;
   bottom: 100px;
 
   stroke: var(--accent);
   animation: rotate-half-reverse 1s ease;
 }
+.blob-one {
+  position: absolute;
+  bottom: -100px;
+  left: -150px;
+  fill: #dce6ff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  animation: move 1s var(--spring-easing);
+  flex-shrink: 0;
+}
+
+.blob-two {
+  position: absolute;
+  bottom: -190px;
+  left: -120px;
+  fill: #dce6ff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 400px;
+  height: 605px;
+  flex-shrink: 1;
+  animation: move-two 1s var(--spring-easing);
+}
+
+.blob-right {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 0;
+  flex-shrink: 0;
+  fill: #b4d2f5;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  animation: move 1s var(--spring-easing);
+
+}
+
+.rectangle {
+  position: absolute;
+  left: -100px;
+  top: 150px;
+  width: 200px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 27px;
+  border: 29px solid #e5e580;
+  animation: bounce-rectangle 1s cubic-bezier(0.66, 0.07, 0.51, 1.52) ;
+}
+
+/* change this to media queries */
 .container-given-text {
   display: flex;
   overflow: hidden;
   height: clamp(30vh, 40vh, 50vh);
-
   max-width: 90vw;
   align-items: center;
 }
@@ -122,46 +158,7 @@ button {
   transition: 1s;
 }
 
-
-@keyframes appearText {
-  0% {
-    transform: translateY(-400px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-
-@keyframes disappearText {
-  0% {
-    transform: translateY(0px);
-  }
-
-  100% {
-    transform: translateY(400px);
-  }
-}
-@keyframes rotate-half-reverse {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: translateX(15px) translateY(42px) rotate(-240deg);
-  }
-}
-
-.slide-in{
-  animation:disappearText 500ms cubic-bezier(0.66, 0.07, 0.51, 1.52);
+.slide-in {
+  animation: disappearText 500ms cubic-bezier(0.66, 0.07, 0.51, 1.52);
   transform: translateY(400px);
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

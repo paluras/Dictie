@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import levenshteinDistance from "./utils/levensheinDistance";
 import filterAlphabetic from "./utils/filterAlphabetic";
+import addAnimation from "./utils/addAnimation";
 import HollowTriangle from "./components/HollowTriangle";
+import "./style/style.animations.css"
 import "./App.css";
 import CircleSVG from "./components/CircleSVG";
+import BlobOneLeft from "./components/BlobSvg1";
+import BlobTwoLeft from "./components/BlobSvg2";
+import BlobRight from "./components/BlobSvg3";
+import Rectangle from "./components/Rectangle";
 
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
@@ -11,19 +17,13 @@ const VoiceInput: React.FC = () => {
 
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
 
-  //  thinkk of another logic for this
-  const [displayNone, setDisplayNone] = useState<string>("flex");
-  const [displayNoneRev, setDisplayNoneRev] = useState<string>("none");
-
   const index = useRef(0);
-  console.log(index);
   const incrementCount = () => {
     index.current ++;
     console.log(index.current); // Log the updated count
   };
-
-  const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
-  const [feeling, setFeeting] = useState<string>("");
+const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
+const [feeling, setFeeting] = useState<string>("");
 
   const documentBody = document.body;
   const startButton: HTMLButtonElement | null =
@@ -66,8 +66,7 @@ const VoiceInput: React.FC = () => {
 
     recognition.onaudiostart = () => {
       setSpeechEnd(false);
-      setDisplayNone("none");
-      setDisplayNoneRev("flex");
+     
       documentBody.style.backgroundColor = "#E5E581";
       startButton.style.backgroundColor = "#79d2c4";
 
@@ -79,46 +78,23 @@ const VoiceInput: React.FC = () => {
       recognition.stop();
       console.log("Speech recognition has stopped.");
     };
+
+    // Change Background when audio ends
     recognition.onaudioend = () => {
-      // const animatedText: HTMLElement =
-      //   document.querySelector(".animated-text")!;
-      // console.log(animatedText);
-      // const speech: HTMLElement = document.querySelector(".spoken-text")!;
-      // console.log(animatedText);
       recognition.stop();
       console.log("audio has stoped");
-
       documentBody.style.backgroundColor = "#fafaf0";
       startButton.style.backgroundColor = "#E5E580";
-      // Change background to default
-
-      //     console.log("Audio ended");
-      //     if (similarityPercentage > 90) {
-      //     setTimeout(() => {
-      //       console.log(similarityPercentage);
-
-      //       console.log("2sec");
-      //       animatedText.classList.add("slide-in");
-      //       speech.classList.add("slide-in");
-
-      //       setTimeout(() => {
-      //         handleFront();
-      //         console.log("front");
-
-      //       }, 1000);
-      // }, 1000);}
-
       setSpeechEnd(true);
-      setDisplayNone("flex");
-      setDisplayNoneRev("none");
     };
-    const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
 
+    // Stop button
+    const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
     stopBtn.onclick = () => {
       recognition.abort();
       console.log("Speech recognition aborted.");
     };
-
+    // Main transcribe functionality
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
       const transcript: string = event.results[0][0].transcript;
       setSpokenText(transcript);
@@ -143,42 +119,13 @@ const VoiceInput: React.FC = () => {
        
       }
     };
-
+// Error catcher
     recognition.onerror = (event: { error: string }) => {
       console.error("Speech recognition error", event.error);
     };
 
     recognition.start();
   };
-
- 
-  // const addAnimation = () => {
-  //   animatedText.classList.add("slide-in");
-  //   speech?.classList.add("slide-in");
-  // };
-
-
-  const addAnimation = () => {
-    const animatedText: HTMLElement = document.querySelector(".animated-text")!;
-
-    const speech: HTMLElement = document.querySelector(".spoken-text")!;
-  
-    return new Promise<void>((resolve) => {
-      // Add the animation classes immediately
-      animatedText.classList.add("slide-in");
-      speech?.classList.add("slide-in");
-  
-      // Resolve the promise after a 1-second delay
-      setTimeout(() => {
-        resolve();
-      }, 1000); // 1000 milliseconds = 1 second
-    });
-  };
-
-
-
-
-
 
 
   const handleBack = () => {
@@ -189,28 +136,17 @@ const VoiceInput: React.FC = () => {
   };
 
   const handleFront = async () => {
-    console.log(index);
-
+ 
     await addAnimation();
     incrementCount();
-
-    
       setSpokenText("");
       resetAnimation();
       setSimilarityPercentage(0);
   
   };
 
- 
 
-  // const handleStopListening = () => {
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   recognition.stop();
-  //   recognition.abort();
-  //   console.log("Audio Stoped");
-  //   setSpeechEnd(true)
-  // };
-
+  // Change text based on similarityPercentage
   useEffect(() => {
     similarityPercentage < 5
       ? setFeeting("😊 Sa incepem")
@@ -225,19 +161,29 @@ const VoiceInput: React.FC = () => {
       : setFeeting("");
   }, [similarityPercentage]);
 
+
+
+
   return (
     <>
+        {/* make components for each  */}
+       <div className="absolute-animations">
+          {" "}
+          <BlobTwoLeft animationKey={animationKey} />
+          <BlobOneLeft animationKey={animationKey} />
+          <BlobRight animationKey={animationKey} />
+         <Rectangle animationKey={animationKey} />
+          <HollowTriangle animationKey={animationKey} />
+         
+        </div>
       <header>
         <h1 style={{ position: "absolute", top: "5px", margin: "0" }}>
           Dictie!
         </h1>
       </header>
       <main>
-        <div className="absolute-animations">
-          {" "}
-          <HollowTriangle animationKey={animationKey} />
-          <CircleSVG animationKey={animationKey} />
-        </div>
+    
+        <CircleSVG animationKey={animationKey} />
 
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">
@@ -261,13 +207,13 @@ const VoiceInput: React.FC = () => {
         <div className="container-btns">
           {" "}
           <button
-            style={{ display: displayNone }}
+            style={{ display: speechEnd ? "flex" : "none"}}
             className="start-btn"
             onClick={handleVoiceInput}
           >
             Porniți Înregistrarea Vocală
           </button>
-          <button style={{ display: displayNoneRev }} className="stop">
+          <button style={{ display: speechEnd ? "none" : "flex"}} className="stop">
             Stop
           </button>
         </div>
