@@ -76,8 +76,7 @@ button{
   line-height: 1.5;
   font-weight: 400;
     --spring-easing: linear(0, 0.11 5%, 0.78 21%, 1, 1.04 42%, 1 69%, 1);
-
-
+ 
   color-scheme: light dark;
   color: var(--text);
   background-color: var(--background);

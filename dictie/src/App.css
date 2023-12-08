@@ -139,7 +139,11 @@ button:hover {
   height: 100vh;
   pointer-events: none;
   position: absolute;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
 }
+
 
 .blob-right {
   position: absolute;
@@ -182,6 +186,11 @@ button:hover {
   word-break: keep-all;
  
   text-wrap: balance;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.container-given-text::-webkit-scrollbar{
+  display: none;
 }
 
 .animated-text {
