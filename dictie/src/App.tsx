@@ -13,11 +13,11 @@ import Rectangle from "./components/Rectangle";
 
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
-  const [animationKey, setAnimationKey] = useState(0);
+  const [animationKey, setAnimationKey] = useState<number>(0);
 
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
 
-  const index = useRef(0);
+  const index = useRef<number>(0);
   const incrementCount = () => {
     index.current ++;
     console.log(index.current); // Log the updated count
@@ -94,6 +94,8 @@ const [feeling, setFeeting] = useState<string>("");
       recognition.abort();
       console.log("Speech recognition aborted.");
     };
+
+    
     // Main transcribe functionality
     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
       const transcript: string = event.results[0][0].transcript;
@@ -115,10 +117,17 @@ const [feeling, setFeeting] = useState<string>("");
       if (speechEnd && similarity >= 95) {
         setTimeout(() => {
           handleFront();
+          recognition.abort();
+          console.log("recaborted");
+          
         },1000)
-       
+        recognition.abort();
+        console.log("recaborted");
       }
     };
+
+    console.log(speechEnd);
+    
 // Error catcher
     recognition.onerror = (event: { error: string }) => {
       console.error("Speech recognition error", event.error);
@@ -178,13 +187,14 @@ const [feeling, setFeeting] = useState<string>("");
          
         </div>
       <header>
-        <h1 style={{ position: "absolute", top: "5px", margin: "0" }}>
+        <h1 className="logo" style={{ position: "absolute",left:"10px", top: "5px", margin: "0" }}>
           Dictie!
         </h1>
+        <CircleSVG animationKey={animationKey} />
       </header>
       <main>
     
-        <CircleSVG animationKey={animationKey} />
+      
 
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">
