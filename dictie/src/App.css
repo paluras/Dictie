@@ -31,10 +31,12 @@ header {
 
 h1 {
   overflow-wrap: break-word;
-  font-size: 3rem;
+
   flex-shrink: 1;
   z-index: 200;
 }
+
+
 
 button {
   background-color: var(--primary);
@@ -43,15 +45,25 @@ button {
   border-radius: 10px;
   color: var(--text);
   font-weight: 500;
-  transition: background-color 500ms ease-in;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition:  220ms cubic-bezier(0.66, 0.07, 0.51, 1.52) ; ;
 }
+
+button:hover{
+  scale: 1.08;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
+}
+
 .start-btn {
+  display: flex;
   background-color: var(--secondary);
+  width: 250px;
+  justify-content: center;
 }
 
 .stop {
   display: flex;
-  width: 150px;
+  width: 250px;
   justify-content: center;
 }
 
@@ -75,6 +87,7 @@ button {
 }
 
 .half-ring {
+ 
   fill: none;
   stroke: #3498db;
   stroke-width: 20;
@@ -82,15 +95,14 @@ button {
   animation: rotate 1s ease;
 }
 
-.triangle {
+
+.triangle  {
   width: 277.128px;
   height: 240px;
   transition: 500ms ease-in;
 
-  overflow: hidden;
   position: absolute;
-  /* fill: none; */
-
+  fill: none;
   right: -150px;
   bottom: 100px;
 
@@ -105,6 +117,8 @@ button {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   animation: move 1s var(--spring-easing);
   flex-shrink: 0;
+  transition:  500ms linear;
+
 }
 
 .blob-two {
@@ -117,17 +131,33 @@ button {
   height: 605px;
   flex-shrink: 1;
   animation: move-two 1s var(--spring-easing);
+  transition:  500ms linear;
+
+}
+
+.absolute-animations{
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+ position: absolute;
+
+
+
 }
 
 .blob-right {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  right: 0;
-  flex-shrink: 0;
+
+  right: -30px;
+  top: -25px;
+  flex-shrink: 1;
   fill: #b4d2f5;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   animation: move 1s var(--spring-easing);
+
+  transition:  500ms linear;
+
 
 }
 
@@ -140,9 +170,29 @@ button {
   flex-shrink: 0;
   border-radius: 27px;
   border: 29px solid #e5e580;
+  transition:  500ms linear;
   animation: bounce-rectangle 1s cubic-bezier(0.66, 0.07, 0.51, 1.52) ;
 }
 
+@media (max-width:780px) {
+ .rectangle , .blob-one ,.blob-right,.blob-two , .triangle ,.half-ring  {
+  scale: 0.8
+ }
+}
+
+@media (max-width:550px) {
+  .rectangle , .blob-one ,.blob-right,.blob-two , .triangle , .half-ring {
+  scale:0.5
+  }
+ .rectangle , .triangle{
+  display: none;
+ }
+
+ .blob-right{
+ right: -80px;
+ top: -70px;
+ }
+}
 /* change this to media queries */
 .container-given-text {
   display: flex;

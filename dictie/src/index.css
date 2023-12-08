@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5 {
 
 html {font-size: 100%;} /* 16px */
 
- /* h1 {font-size: 3.366rem;} */
- /* 53.92px; */
+ h1 {font-size: 3rem;} 
+
 
 h2 {font-size: 2.525rem; /* 40.32px */}
 
@@ -30,6 +30,32 @@ button{
   font-family: 'Poppins';
 }
 
+@media (max-width: 1000px) {
+  h1{
+    font-size: 2.5rem;
+  }
+}
+@media (max-width:780px) {
+  h1{
+    font-size: 2rem;
+  }
+}
+@media (max-width:500px) {
+  h1{
+    font-size: 1.75rem;
+  }
+}
+@media (max-width:400px) {
+  h1{
+    font-size: 1.5rem;
+  }
+}
+@media (max-width:350px) {
+  h1{
+    font-size: 1.25rem;
+  }
+}
+ 
 
 :root {
   margin: 0;
@@ -42,7 +68,7 @@ button{
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --spring-easing: linear(0, 0.11 5%, 0.78 21%, 1, 1.04 42%, 1 69%, 1);
+    --spring-easing: linear(0, 0.11 5%, 0.78 21%, 1, 1.04 42%, 1 69%, 1);
 
 
   color-scheme: light dark;
@@ -62,7 +88,7 @@ body{
   display: flex;
   flex-direction: column;
   height: 100vh;
-
+  overflow: hidden;
   margin: 0;
  
   transition: background-color 500ms ease-in;

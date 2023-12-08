@@ -136,11 +136,12 @@ const [feeling, setFeeting] = useState<string>("");
   };
 
   const handleFront = async () => {
- 
+  
     await addAnimation();
+    resetAnimation();
     incrementCount();
       setSpokenText("");
-      resetAnimation();
+     
       setSimilarityPercentage(0);
   
   };
@@ -172,7 +173,7 @@ const [feeling, setFeeting] = useState<string>("");
           <BlobTwoLeft animationKey={animationKey} />
           <BlobOneLeft animationKey={animationKey} />
           <BlobRight animationKey={animationKey} />
-         <Rectangle animationKey={animationKey} />
+          <Rectangle animationKey={animationKey} />
           <HollowTriangle animationKey={animationKey} />
          
         </div>

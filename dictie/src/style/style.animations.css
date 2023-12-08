@@ -9,6 +9,11 @@
     transform: scale(1) translate3d(0px, 0px, 0px);
   }
 }
+
+
+  
+
+
 @keyframes move-two {
     0% {
       transform: scale(1) translate3d(0px, 0px, 0px);
@@ -63,9 +68,12 @@
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg);
+    transform:  rotate(0deg) ;
   }
-  100% {
-    transform: rotate(360deg);
+  50% {
+    transform: rotate(180deg) ;
+  }
+ 100% {
+    transform:  rotate(360deg) ;
   }
 }
