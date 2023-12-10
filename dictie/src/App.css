@@ -94,22 +94,18 @@ button:hover {
   stroke-width: 20;
   transform-origin: center;
   animation: rotate 1s ease;
-  
 }
 
 .triangle {
   width: 277.128px;
   height: 240px;
   transition: 500ms ease-in;
-
   position: absolute;
   fill: none;
   right: -150px;
   bottom: 100px;
-
   stroke: var(--accent);
   animation: rotate-half-reverse 1s ease;
-  
 }
 .blob-one {
   position: absolute;
@@ -117,10 +113,9 @@ button:hover {
   left: -150px;
   fill: #dce6ff;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  animation: move 1s var(--spring-easing);
+  animation: move 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
   flex-shrink: 0;
   transition: 500ms linear;
-
 }
 
 .blob-two {
@@ -132,40 +127,37 @@ button:hover {
   width: 400px;
   height: 605px;
   flex-shrink: 1;
-  animation: move-two 1s var(--spring-easing);
+  animation: move-two 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
   transition: 500ms linear;
-  
 }
 
+
+.similar-container{
+max-width: 200px;
+
+}
 .absolute-animations {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
   position: absolute;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-
-
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-
 
 .blob-right {
   position: absolute;
-
   right: -30px;
   top: -25px;
   flex-shrink: 1;
   fill: #b4d2f5;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  animation: move 1s var(--spring-easing);
-
+  animation: move 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
   transition: 500ms linear;
-
 }
 
 .rectangle {
- 
   position: absolute;
   left: -100px;
   top: 150px;
@@ -178,9 +170,6 @@ button:hover {
   animation: bounce-rectangle 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
 }
 
-
- 
-
 /* change this to media queries */
 .container-given-text {
   display: flex;
@@ -191,16 +180,14 @@ button:hover {
   padding: 20px;
   align-items: center;
   justify-content: center;
-  
-  
-  
+
   word-break: break-word;
- 
+
   text-wrap: balance;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-.container-given-text::-webkit-scrollbar{
+.container-given-text::-webkit-scrollbar {
   display: none;
 }
 
