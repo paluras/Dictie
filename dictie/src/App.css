@@ -8,11 +8,19 @@ main {
   height: 100vh;
 }
 header {
+ 
   padding: 20px;
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.right-header{
+  z-index: 1000;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 .container-btns {
   display: flex;
