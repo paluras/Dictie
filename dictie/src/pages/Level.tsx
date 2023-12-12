@@ -1,19 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import handleVoiceInput from "../utils/handleVoice.tsx";
-// import levenshteinDistance from "./utils/levensheinDistance";
-// import filterAlphabetic from "./utils/filterAlphabetic";
 import addAnimation from "../utils/addAnimation";
-// import HollowTriangle from "../components/animations/HollowTriangle.tsx";
 import givenText from "../../db.tsx";
 import "../style/style.animations.css";
-import "../App.css";
-// import CircleSVG from "../components/CircleSVG";
-// import BlobOneLeft from "../components/animations/BlobSvg1.tsx";
-// import BlobTwoLeft from "../components/animations/BlobSvg2.tsx";
-// import BlobRight from "../components/animations/BlobSvg3.tsx";
-// import Rectangle from "../components/animations/Rectangle.tsx";
+import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
+import { Link } from "react-router-dom";
 
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
@@ -29,102 +22,11 @@ const VoiceInput: React.FC = () => {
   const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
   const [feeling, setFeeting] = useState<string>("");
 
-  // const documentBody = document.body;
-  // const startButton: HTMLButtonElement | null =
-  //   document.querySelector(".start-btn")!;
-
-
   // Change this to context in future
   const resetAnimation = () => {
     // Incrementing the animationKey will re-render the component
     setAnimationKey((prevKey) => prevKey + 1);
   };
-  // I dont know how to Fix type error of SpeechRecognition
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-
-  // window.SpeechRecognition =
-  //   window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const recognition = new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition();
-
-  // const handleFront = async () => {
-  //   // Your handleFront implementation here
-  // };
-
-  //  const handleVoiceInput = () => {
-  //     recognition.interimResults = true;
-  //     recognition.lang = "ro-RO";
-  //     recognition.continuous = false;
-
-  //     recognition.onaudiostart = () => {
-  //       setSpeechEnd(false);
-  //        // Make the background a color
-  //       documentBody.style.backgroundColor = "#E5E581";
-  //       startButton.style.backgroundColor = "#79d2c4";
-  //       console.log("Audio started");
-  //     };
-
-  //     recognition.onspeechend = () => {
-  //       recognition.stop();
-  //       console.log("Speech recognition has stopped.");
-  //     };
-
-  //     // Change Background when audio ends
-  //     recognition.onaudioend = () => {
-  //       recognition.stop();
-  //       console.log("audio has stoped");
-  //       documentBody.style.backgroundColor = "#fafaf0";
-  //       startButton.style.backgroundColor = "#E5E580";
-  //       setSpeechEnd(true);
-  //     };
-
-  //     // Stop button
-  //     const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
-  //     stopBtn.onclick = () => {
-  //       recognition.abort();
-  //       console.log("Speech recognition aborted.");
-  //     };
-
-  //     // Main transcribe functionality
-  //     recognition.onresult = (event: { results: { transcript: string }[][] }) => {
-  //       const transcript: string = event.results[0][0].transcript;
-  //       setSpokenText(transcript);
-  //       // Calculate Levenshtein distance and similarity percentage
-  //       const distance = levenshteinDistance(
-  //         filterAlphabetic(transcript.toLocaleLowerCase()),
-  //         filterAlphabetic(givenText[index.current].toLocaleLowerCase())
-  //       );
-  //       const maxLength = Math.max(
-  //         transcript.length,
-  //         givenText[index.current].length
-  //       );
-  //       const similarity = Math.max(0, (1 - distance / maxLength) * 100);
-
-  //       setSimilarityPercentage(similarity);
-
-  // //initiate the next question
-  //       if (speechEnd && similarity >= 95) {
-  //         setTimeout(() => {
-  //           handleFront();
-  //           recognition.abort();
-  //           console.log("recaborted");
-
-  //         },500)
-  //         recognition.abort();
-  //         console.log("recaborted");
-  //       }
-  //     };
-
-  //     console.log(speechEnd);
-
-  // // Error catcher
-  //     recognition.onerror = (event: { error: string }) => {
-  //       console.error("Speech recognition error", event.error);
-  //     };
-
-  //     recognition.start();
-  //   };
 
   const handleBack = () => {
     addAnimation();
@@ -155,21 +57,15 @@ const VoiceInput: React.FC = () => {
       ? setFeeting("😍 Ai făcut uimitor!")
       : setFeeting("");
   }, [similarityPercentage]);
-
+  const backBtn = (
+    <Link to="..">
+      <button>Back</button>
+    </Link>
+  );
   return (
     <>
-      {/* make components for each  */}
-      {/* <div className="absolute-animations">
-        {" "}
-        <BlobTwoLeft animationKey={animationKey} />
-        <BlobOneLeft animationKey={animationKey} />
-        <BlobRight animationKey={animationKey} />
-        <Rectangle animationKey={animationKey} />
-        <HollowTriangle animationKey={animationKey} />
-      </div> */}
-
       <Animations animationKey={animationKey} />
-   <Header />
+      <Header backButton={backBtn} />
       <main>
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">

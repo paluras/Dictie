@@ -1,7 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
+
 // import CircleSVG from "./animations/CircleSVG";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  backButton: ReactNode;
+};
+
+const Header: React.FC<HeaderProps> = ({ backButton }) => {
+
   return (
     <header>
       <h1
@@ -19,9 +25,9 @@ const Header: React.FC = () => {
       </h1>
       {/* <CircleSVG animationKey={animationKey} /> */}
       <div className="right-header">
-        <h2>Exercitii</h2>
-        <h2>Progress</h2>
+     {backButton}
       </div>
+   
     </header>
   );
 };
