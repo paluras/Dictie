@@ -54,29 +54,32 @@ const handleVoiceInput = ({
   };
   recognition.onspeechend = () => {
     recognition.stop();
-
+   
+      setSpeechEnd(true);
+  
+   
     console.log("Speech recognition has stopped.");
   };
 
   // Change Background when audio ends
   recognition.onaudioend = () => {
     recognition.stop();
-    console.log("audio has stoped");
+    console.log("On Audio End Ran");
     documentBody.style.backgroundColor = "#fafaf0";
     startButton.style.backgroundColor = "#E5E580";
     setSpeechEnd(true);
 
     // console.log(userScore, "userScore");
 
-    console.log(speechEnd), "speechEnd";
-    console.log(score, "score");
+
 
     
 
     if (speechEnd && score >= 10 && score < 90) {
+  
       setTimeout(() => {
         handleFront();
-        console.log("Nothing");
+        console.log("speechEnd && score >= 10 && score < 90 Ran");
       }, 1000);
     }
     recognition.abort();
@@ -85,7 +88,7 @@ const handleVoiceInput = ({
   const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
   stopBtn.onclick = () => {
     recognition.abort();
-    console.log("Speech recognition aborted.");
+    console.log("Button Pressed and Speech Recognition Aborted");
   };
 
   // Main transcribe functionality
@@ -99,7 +102,7 @@ const handleVoiceInput = ({
       filterAlphabetic(transcript.toLocaleLowerCase()),
       filterAlphabetic(givenText.toLocaleLowerCase()) // Pass givenText as a prop
     );
-
+      
     const maxLength = Math.max(transcript.length, givenText.length);
     const similarity = Math.max(0, (1 - distance / maxLength) * 100);
     score = Math.round(similarity);
@@ -109,13 +112,19 @@ const handleVoiceInput = ({
     
     if (speechEnd && score >= 90) {
       setTimeout(() => {
+        console.log("speechEnd && score >= 90 Ran");
+        
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-expect-error
         setUserScore((prev: number) => prev + 1);
         handleFront();
       }, 1000);
-      recognition.abort();
+      recognition.stop();
 
+    }else if(recognition.onspeechend && score < 10){
+      console.log("Speech ended");
+      
+      recognition.stop();
     }
  
 
