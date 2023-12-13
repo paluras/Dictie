@@ -57,10 +57,11 @@ const handleVoiceInput = ({
  
 
   // Change Background when audio ends
-recognition.onaudioend = (e: Event) => {
-    console.log(e);
+recognition.onaudioend = () => {
+   
     
     recognition.stop();
+    recognition.abort();
     console.log("audio has stoped");
     documentBody.style.backgroundColor = "#fafaf0";
     startButton.style.backgroundColor = "#E5E580";
@@ -73,22 +74,22 @@ recognition.onaudioend = (e: Event) => {
     setTimeout(() => {
     if (speechEnd && score >= 90) {
    
-      console.log(score, "score");
-
-      handleFront();
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-expect-error
       setUserScore((prev: number) => prev + 1);
-      console.log("Plus One");
+      handleFront();
+    
+    //   console.log("Plus One");
 
-      recognition.abort();
-      console.log("recaborted");
+    //   recognition.abort();
+    //   console.log("recaborted");
 
     
     } else if (speechEnd && score >= 10 && score < 90) {
       handleFront();
       console.log("Nothing");
-    }
+    }recognition.abort();
 }, 1000)
   };
 //   recognition.onspeechend = () => {
