@@ -71,15 +71,7 @@ const handleVoiceInput = ({
     console.log(speechEnd), "speechEnd";
     console.log(score, "score");
 
-    if (speechEnd && score >= 90) {
-      setTimeout(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-expect-error
-        setUserScore((prev: number) => prev + 1);
-        handleFront();
-      }, 1000);
-  
-    }
+    
 
     if (speechEnd && score >= 10 && score < 90) {
       setTimeout(() => {
@@ -114,6 +106,20 @@ const handleVoiceInput = ({
     console.log(score, "score");
 
     setSimilarityPercentage(similarity); // Added setSimilarityPercentage to update similarityPercentage prop
+    
+    if (speechEnd && score >= 90) {
+      setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
+        setUserScore((prev: number) => prev + 1);
+        handleFront();
+      }, 1000);
+      recognition.abort();
+
+    }
+ 
+
+    
   };
 
   console.log(speechEnd);
