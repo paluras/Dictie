@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ backButton }) => {
           }
         }
       >
-        Dictie!
+        Dicție!
       </h1>
       {/* <CircleSVG animationKey={animationKey} /> */}
       <div className="right-header">

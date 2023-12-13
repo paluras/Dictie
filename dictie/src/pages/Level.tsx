@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 const VoiceInput: React.FC = () => {
   const [spokenText, setSpokenText] = useState<string>("");
   const [animationKey, setAnimationKey] = useState<number>(0);
+  const [userScore, setUserScore] = useState<number>(0);
 
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
 
@@ -27,6 +28,7 @@ const VoiceInput: React.FC = () => {
     // Incrementing the animationKey will re-render the component
     setAnimationKey((prevKey) => prevKey + 1);
   };
+
 
   const handleBack = () => {
     addAnimation();
@@ -62,20 +64,36 @@ const VoiceInput: React.FC = () => {
       <button>Back</button>
     </Link>
   );
+
+
+  const handleVoiceInputCallback = () => {
+    handleVoiceInput({
+      setUserScore,
+      setSpeechEnd,
+      givenText: givenText[index.current],
+      setSpokenText,
+      setSimilarityPercentage,
+      speechEnd,
+      handleFront,
+      spokenText: "",
+    });
+  };
+
   return (
     <>
       <Animations animationKey={animationKey} />
       <Header backButton={backBtn} />
       <main>
+        <span>{userScore}/{givenText.length}</span>
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">
             {givenText[index.current]}
           </h1>
         </div>
         <div className="container-mid">
-          <button className="back" onClick={() => handleBack()}>
-            Back
-          </button>
+      {index.current !== 0 && <button className="back" onClick={() => handleBack()}>
+        Back
+      </button>}
           <p className="similar-container">
             Similaritate: {similarityPercentage.toFixed(1)}% <br />
             {feeling}
@@ -93,17 +111,7 @@ const VoiceInput: React.FC = () => {
           <button
             style={{ display: speechEnd ? "flex" : "none" }}
             className="start-btn"
-            onClick={() =>
-              handleVoiceInput({
-                setSpeechEnd,
-                givenText: givenText[index.current],
-                setSpokenText,
-                setSimilarityPercentage,
-                speechEnd,
-                handleFront,
-                spokenText: "",
-              })
-            }
+            onClick={handleVoiceInputCallback}
           >
             Porniți Înregistrarea Vocală
           </button>
