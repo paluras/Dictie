@@ -29,10 +29,13 @@ const handleVoiceInput = ({
   // I dont know how to Fix type error of SpeechRecognition
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
-  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  window.SpeechRecognition =
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+    window.SpeechRecognition || window.webkitSpeechRecognition;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognition =new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition();
+  const recognition = new (window as any).SpeechRecognition() ||new (window as any).webkitSpeechRecognition();
   let score = 0;
 
   recognition.interimResults = true;
@@ -40,7 +43,7 @@ const handleVoiceInput = ({
   recognition.continuous = false;
 
   console.log(recognition);
-  
+
   recognition.onaudiostart = () => {
     setSpeechEnd(false);
     // Make the background a color
@@ -51,18 +54,13 @@ const handleVoiceInput = ({
   };
   recognition.onspeechend = () => {
     recognition.stop();
-    recognition.abort();
-    console.log("Speech recognition has stopped.");
-};
 
- 
+    console.log("Speech recognition has stopped.");
+  };
 
   // Change Background when audio ends
-recognition.onaudioend = () => {
-   
-    
+  recognition.onaudioend = () => {
     recognition.stop();
-    recognition.abort();
     console.log("audio has stoped");
     documentBody.style.backgroundColor = "#fafaf0";
     startButton.style.backgroundColor = "#E5E580";
@@ -72,32 +70,25 @@ recognition.onaudioend = () => {
 
     console.log(speechEnd), "speechEnd";
     console.log(score, "score");
-    setTimeout(() => {
+
     if (speechEnd && score >= 90) {
-   
-  
+      setTimeout(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-expect-error
-      setUserScore((prev: number) => prev + 1);
-      handleFront();
-    
-    //   console.log("Plus One");
+        //@ts-expect-error
+        setUserScore((prev: number) => prev + 1);
+        handleFront();
+      }, 1000);
+  
+    }
 
-    //   recognition.abort();
-    //   console.log("recaborted");
-
-    
-    } else if (speechEnd && score >= 10 && score < 90) {
-      handleFront();
-      console.log("Nothing");
-    }recognition.abort();
-}, 1000)
+    if (speechEnd && score >= 10 && score < 90) {
+      setTimeout(() => {
+        handleFront();
+        console.log("Nothing");
+      }, 1000);
+    }
+    recognition.abort();
   };
-//   recognition.onspeechend = () => {
-//     recognition.stop();
-//     console.log("Speech recognition has stopped.");
-//   };
-
   // Stop button
   const stopBtn: HTMLElement = document.querySelector(".stop") as HTMLElement;
   stopBtn.onclick = () => {
