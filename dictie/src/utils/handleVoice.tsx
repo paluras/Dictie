@@ -51,6 +51,7 @@ const handleVoiceInput = ({
   };
   recognition.onspeechend = () => {
     recognition.stop();
+    recognition.abort();
     console.log("Speech recognition has stopped.");
 };
 
