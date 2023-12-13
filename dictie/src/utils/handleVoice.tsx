@@ -53,7 +53,7 @@ const handleVoiceInput = ({
  
 
   // Change Background when audio ends
-  recognition.onsoundend = (e) => {
+recognition.onsoundend = (e: Event) => {
     console.log(e);
     
     recognition.stop();
