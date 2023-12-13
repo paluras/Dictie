@@ -49,11 +49,15 @@ const handleVoiceInput = ({
     startButton.style.backgroundColor = "#79d2c4";
     console.log("Audio started");
   };
+  recognition.onspeechend = () => {
+    recognition.stop();
+    console.log("Speech recognition has stopped.");
+};
 
  
 
   // Change Background when audio ends
-recognition.onsoundend = (e: Event) => {
+recognition.onaudioend = (e: Event) => {
     console.log(e);
     
     recognition.stop();
