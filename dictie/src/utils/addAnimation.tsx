@@ -1,6 +1,6 @@
 const addAnimation = () => {
     const animatedText: HTMLElement = document.querySelector(".animated-text")!;
-
+  
     const speech: HTMLElement = document.querySelector(".spoken-text")!;
   
     return new Promise<void>((resolve) => {
@@ -11,7 +11,7 @@ const addAnimation = () => {
       // Resolve the promise after a 1-second delay
       setTimeout(() => {
         resolve();
-      }, 500); // 1000 milliseconds = 1 second
+      }, 1000); // 1000 milliseconds = 1 second
     });
   };
 

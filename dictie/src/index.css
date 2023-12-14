@@ -31,7 +31,7 @@ button{
 }
 
 @media (max-width: 1000px) {
-  h1{
+  h1 {
     font-size: 2.5rem;
   }
   h2{
@@ -49,11 +49,12 @@ button{
 }
 @media (max-width:500px) {
   h1{
+    
     font-size: 1.75rem;
   }
 }
 @media (max-width:400px) {
-  h1{
+  h1 ,.score-board{
     font-size: 1.5rem;
   }
 }

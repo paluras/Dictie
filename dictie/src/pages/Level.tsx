@@ -7,21 +7,26 @@ import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
 import { Link } from "react-router-dom";
+import percentageFunc from "../utils/percentCalc.tsx";
+import manageScore from "../utils/manageScore.tsx";
 
 const VoiceInput: React.FC = () => {
+  // State from handle voice
   const [spokenText, setSpokenText] = useState<string>("");
-  const [animationKey, setAnimationKey] = useState<number>(0);
-  const [userScore, setUserScore] = useState<number>(0);
-
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
 
+  console.log(speechEnd);
+  console.log(spokenText);
+
+  const [animationKey, setAnimationKey] = useState<number>(0);
+  const [userScore , setUserScore] = useState<number>(0);
   const index = useRef<number>(0);
-  const incrementCount = () => {
-    index.current++;
-    console.log(index.current); // Log the updated count
-  };
-  const [similarityPercentage, setSimilarityPercentage] = useState<number>(0);
-  const [feeling, setFeeting] = useState<string>("");
+ 
+ 
+  const [feeling, setFeeting] = useState<string>("😊 Sa incepem");
+  const similar = percentageFunc(spokenText, givenText[index.current]);
+  const scoreboard = manageScore(similar);
+  console.log(scoreboard);
 
   // Change this to context in future
   const resetAnimation = () => {
@@ -29,6 +34,8 @@ const VoiceInput: React.FC = () => {
     setAnimationKey((prevKey) => prevKey + 1);
   };
 
+
+  // console.log(incrementScore());
 
   const handleBack = () => {
     addAnimation();
@@ -40,62 +47,84 @@ const VoiceInput: React.FC = () => {
   const handleFront = async () => {
     await addAnimation();
     resetAnimation();
-    incrementCount();
+    index.current++;
     setSpokenText("");
-    setSimilarityPercentage(0);
+    const scoreboard = document.querySelector(".score-board") as HTMLElement;
+    scoreboard.style.color = "black";
   };
 
-  // Change text based on similarityPercentage
+  useEffect(()=>{
+
+    if(speechEnd && spokenText !== "") {handleFront()}
+  }, [speechEnd, spokenText])
+
+  // Change text based on similarity
   useEffect(() => {
-    similarityPercentage < 5
+ 
+    if (similar === 0) return;
+    similar < 5
       ? setFeeting("😊 Sa incepem")
-      : similarityPercentage <= 50
+      : similar <= 50
       ? setFeeting("😔 Poți face mai bine")
-      : similarityPercentage > 50 && similarityPercentage < 80
+      : similar > 50 && similar < 80
       ? setFeeting("😯 Te apropii!")
-      : similarityPercentage > 80 && similarityPercentage < 90
+      : similar > 80 && similar < 90
       ? setFeeting("😃 Lucru excelent!")
-      : similarityPercentage > 90
+      : similar > 90
       ? setFeeting("😍 Ai făcut uimitor!")
       : setFeeting("");
-  }, [similarityPercentage]);
+ 
+  }, [similar]);
+
+  useEffect(()=>{
+    if (scoreboard === "point" && speechEnd){
+      const scoreboard = document.querySelector(".score-board") as HTMLElement;
+      scoreboard.style.color = "green";
+      setUserScore(prev=>prev+1);
+    }else if(scoreboard === "no point" && speechEnd){
+      const scoreboard = document.querySelector(".score-board") as HTMLElement;
+      scoreboard.style.color = "red"
+      
+    }
+  }, [speechEnd ,scoreboard])
+
   const backBtn = (
     <Link to="..">
       <button>Back</button>
     </Link>
   );
 
-
   const handleVoiceInputCallback = () => {
     handleVoiceInput({
-      setUserScore,
       setSpeechEnd,
-      givenText: givenText[index.current],
       setSpokenText,
-      setSimilarityPercentage,
       speechEnd,
-      handleFront,
-      spokenText: "",
     });
   };
+
+  console.log(similar);
 
   return (
     <>
       <Animations animationKey={animationKey} />
       <Header backButton={backBtn} />
       <main>
-        <span>{userScore}/{givenText.length}</span>
+        <span className="score-board">
+          {userScore}/{givenText.length}
+        </span>
         <div className="container-given-text">
           <h1 key={animationKey} className="animated-text">
             {givenText[index.current]}
           </h1>
         </div>
         <div className="container-mid">
-      {index.current !== 0 && <button className="back" onClick={() => handleBack()}>
-        Back
-      </button>}
+          {index.current !== 0 && (
+            <button className="back" onClick={() => handleBack()}>
+              Back
+            </button>
+          )}
           <p className="similar-container">
-            Similaritate: {similarityPercentage.toFixed(1)}% <br />
+            Similaritate: {similar.toFixed(1)}% <br />
             {feeling}
           </p>
           {/* Make function to add the overall score somewhere and reset it */}
