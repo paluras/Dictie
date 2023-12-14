@@ -19,10 +19,9 @@ const VoiceInput: React.FC = () => {
   console.log(spokenText);
 
   const [animationKey, setAnimationKey] = useState<number>(0);
-  const [userScore , setUserScore] = useState<number>(0);
+  const [userScore, setUserScore] = useState<number>(0);
   const index = useRef<number>(0);
- 
- 
+
   const [feeling, setFeeting] = useState<string>("😊 Sa incepem");
   const similar = percentageFunc(spokenText, givenText[index.current]);
   const scoreboard = manageScore(similar);
@@ -34,10 +33,11 @@ const VoiceInput: React.FC = () => {
     setAnimationKey((prevKey) => prevKey + 1);
   };
 
-
   // console.log(incrementScore());
 
-  const handleBack = () => {
+  const handleBack = async () => {
+    await addAnimation();
+    resetAnimation();
     addAnimation();
     setSpokenText("");
     resetAnimation();
@@ -49,18 +49,19 @@ const VoiceInput: React.FC = () => {
     resetAnimation();
     index.current++;
     setSpokenText("");
+    setFeeting("😊 Sa incepem");
     const scoreboard = document.querySelector(".score-board") as HTMLElement;
     scoreboard.style.color = "black";
   };
 
-  useEffect(()=>{
-
-    if(speechEnd && spokenText !== "") {handleFront()}
-  }, [speechEnd, spokenText])
+  useEffect(() => {
+    if (speechEnd && spokenText !== "") {
+      handleFront();
+    }
+  }, [speechEnd, spokenText]);
 
   // Change text based on similarity
   useEffect(() => {
- 
     if (similar === 0) return;
     similar < 5
       ? setFeeting("😊 Sa incepem")
@@ -73,20 +74,18 @@ const VoiceInput: React.FC = () => {
       : similar > 90
       ? setFeeting("😍 Ai făcut uimitor!")
       : setFeeting("");
- 
   }, [similar]);
 
-  useEffect(()=>{
-    if (scoreboard === "point" && speechEnd){
+  useEffect(() => {
+    if (scoreboard === "point" && speechEnd) {
       const scoreboard = document.querySelector(".score-board") as HTMLElement;
       scoreboard.style.color = "green";
-      setUserScore(prev=>prev+1);
-    }else if(scoreboard === "no point" && speechEnd){
+      setUserScore((prev) => prev + 1);
+    } else if (scoreboard === "no point" && speechEnd) {
       const scoreboard = document.querySelector(".score-board") as HTMLElement;
-      scoreboard.style.color = "red"
-      
+      scoreboard.style.color = "red";
     }
-  }, [speechEnd ,scoreboard])
+  }, [speechEnd, scoreboard]);
 
   const backBtn = (
     <Link to="..">
@@ -118,22 +117,48 @@ const VoiceInput: React.FC = () => {
           </h1>
         </div>
         <div className="container-mid">
-          {index.current !== 0 && (
-            <button className="back" onClick={() => handleBack()}>
-              Back
-            </button>
+          {index.current !== 0 || speechEnd && (
+            <svg
+              className="back-arrow"
+              onClick={() => (speechEnd ? handleBack() : "")}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 175 255"
+              fill="#black"
+              transform="rotate(180)"
+            >
+              <path
+                d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
+                fill="#E5E580"
+              />
+            </svg>
           )}
           <p className="similar-container">
             Similaritate: {similar.toFixed(1)}% <br />
             {feeling}
           </p>
           {/* Make function to add the overall score somewhere and reset it */}
-          <button
-            className="front"
-            onClick={() => (speechEnd ? handleFront() : "")}
-          >
-            Skip
-          </button>
+      {speechEnd && <svg   onClick={() => (speechEnd ? handleFront() : "")}
+          className="front-arrow"
+        
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 175 255"
+          fill="#black"
+          
+        >
+          <path
+            d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
+            fill="#E5E580"
+          />
+        </svg>}
+           
+          
+         
+           
+         
         </div>
         <div className="container-btns">
           {" "}
