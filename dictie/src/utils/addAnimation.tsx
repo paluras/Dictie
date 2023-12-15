@@ -11,7 +11,7 @@ const addAnimation = () => {
       // Resolve the promise after a 1-second delay
       setTimeout(() => {
         resolve();
-      }, 1000); // 1000 milliseconds = 1 second
+      }, 500); // 1000 milliseconds = 1 second
     });
   };
 
