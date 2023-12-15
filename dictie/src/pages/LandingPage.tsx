@@ -6,6 +6,10 @@ import imgPreview from "../assets/img-preview.png";
 import "../style/style.animations.css";
 
 const LandingPage: React.FC = () => {
+
+
+
+
   return (
     <>
       <Header backButton={  <Link to="/exercises">
@@ -40,7 +44,7 @@ const LandingPage: React.FC = () => {
                 </svg>
               </span>
 
-              <Link to="/easy">Incearca!</Link>
+              <Link to="/exercises/easy">Incearca!</Link>
             </button>
             <svg
               className="anim-two"

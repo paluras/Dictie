@@ -26,22 +26,56 @@ const UsorComp: React.FC = () => {
     <div>
       <h1>usor</h1>
       <ul>
-        <Link to={"/easy"} onClick={() => handleClick("/easy")}>
+        <Link
+          to={"/exercises/easy"}
+          onClick={() => handleClick("/exercises/easy")}
+        >
           <li
-            className={visitedLinks.includes("/easy") ? "visited" : "list-item"}
+            className={
+              visitedLinks.includes("/exercises/easy") ? "visited" : "list-item"
+            }
           >
             sase sasi
           </li>
         </Link>
         <Link
-          onClick={() => handleClick("/easy-two")}
-          to={"/easy-two"}
+          onClick={() => handleClick("/exercises/easy-two")}
+          to={"/exercises/easy-two"}
         >
-          <li  className={
-            visitedLinks.includes("/easy-two") ? "visited" : "list-item"
-          }>retevei</li>
+          <li
+            className={
+              visitedLinks.includes("/exercises/easy-two")
+                ? "visited"
+                : "list-item"
+            }
+          >
+            retevei
+          </li>
         </Link>
-      
+        <Link
+          to={"/exercises/easy-three"}
+          onClick={() => handleClick("/easy-three")}
+        >
+          <li
+            className={
+              visitedLinks.includes("/easy-three") ? "visited" : "list-item"
+            }
+          >
+            nămol
+          </li>
+        </Link>
+        <Link
+          onClick={() => handleClick("/easy-four")}
+          to={"/exercises/easy-four"}
+        >
+          <li
+            className={
+              visitedLinks.includes("/easy-four") ? "visited" : "list-item"
+            }
+          >
+            vultur
+          </li>
+        </Link>
       </ul>
     </div>
   );

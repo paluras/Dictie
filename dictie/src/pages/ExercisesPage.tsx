@@ -2,12 +2,16 @@ import React from 'react';
 import Header from '../components/Header';
 import '../style/style.exercise.css';
 import { useState } from 'react';   
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import UsorComp from '../components/UsorComponent';
 import MidComp from '../components/MidComponent';
 import GreuComp from '../components/GreuComponent';
 
 const ExercisesPage: React.FC = () => {
+
+  
+
+
     const [level, setLevel] = useState<string>("Usor");
     console.log(level, "Level");
     const backBtnElement = <Link to={'/'}><button>Log in</button></Link>;    

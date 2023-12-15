@@ -6,20 +6,25 @@ import "../style/style.animations.css";
 import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import percentageFunc from "../utils/percentCalc.tsx";
 import manageScore from "../utils/manageScore.tsx";
 
-interface VoiceInputProps {
-  questions: string[];
-}
 
 interface VoiceInputProps {
   questions: string[];
 }
+
 
 const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   //  REFACTOR THIS COMPONENT AGAIN
+
+
+
+  
+
+
+
   console.log("FUNCTION START!!!!!!!!!!!!!");
 
   // State from handle voice

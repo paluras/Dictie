@@ -9,7 +9,7 @@
 
   left: 0;
   padding-top: 20px;
-  /* border-right: 5px var(--text-second) solid; */
+  border-right: 1px rgb(216, 216, 216) solid;;
   box-shadow: 2px 2px 4px rgba(153, 151, 128, 0.295);
 }
 li {
@@ -40,7 +40,6 @@ li:hover {
 
 
   & li {
-    list-style-type:circle;
     padding: 10px;
     border-bottom: 1px solid #ccc;
   }
@@ -59,16 +58,21 @@ li:hover {
 }
   
 
-.list-item{
 
+
+
+& ul .visited:before {
+  content: '✓';
 }
-
 
 .visited {
     
     background-color: var(--primary);
     color: var(--text-second);
     text-decoration: none;
+  
+    
+
     
 }
 
