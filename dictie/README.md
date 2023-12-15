@@ -1,30 +1,28 @@
-# Dictie
+# Dictie-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+"Dictie-app" is a web-based application designed to assist users in improving their Romanian elocution. It provides a user-friendly interface where users can practice pronunciation and receive instant feedback. The application can be easily installed and run on a local development server. It is open-source, welcoming contributions from anyone interested in enhancing its features or performance. The project is licensed under the MIT License.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository.
+2. Install dependencies using `npm install`.
 
-- Configure the top-level `parserOptions` property like this:
+## Usage
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Run the development server using `npm run dev`.
+2. Open your browser and navigate to `http://localhost:5173`.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Contributing
+
+Contributions are welcome! Please follow the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

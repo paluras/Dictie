@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 // import CircleSVG from "./animations/CircleSVG";
 
@@ -10,6 +11,7 @@ const Header: React.FC<HeaderProps> = ({ backButton }) => {
 
   return (
     <header>
+      <Link style={{color:"#1a1908"}} to="/"> 
       <h1
         className="logo"
         style={
@@ -23,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ backButton }) => {
       >
         Dicție!
       </h1>
+      </Link>
       {/* <CircleSVG animationKey={animationKey} /> */}
       <div className="right-header">
      {backButton}
