@@ -8,7 +8,9 @@ import "../style/style.animations.css";
 const LandingPage: React.FC = () => {
   return (
     <>
-      <Header backButton={<button></button>} />
+      <Header backButton={  <Link to="/exercises">
+      <button>Exercitii</button>
+    </Link>} />
       <main className="landing-main">
         <div className="container-left">
           {" "}

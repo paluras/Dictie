@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import handleVoiceInput from "../utils/handleVoice.tsx";
 import addAnimation from "../utils/addAnimation";
-import givenText from "../../db.tsx";
+
 import "../style/style.animations.css";
 import "../style/App.css";
 import Header from "../components/Header.tsx";
@@ -10,31 +10,39 @@ import { Link } from "react-router-dom";
 import percentageFunc from "../utils/percentCalc.tsx";
 import manageScore from "../utils/manageScore.tsx";
 
-const VoiceInput: React.FC = () => {
+interface VoiceInputProps {
+  questions: string[];
+}
 
+interface VoiceInputProps {
+  questions: string[];
+}
+
+const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
+  //  REFACTOR THIS COMPONENT AGAIN
   console.log("FUNCTION START!!!!!!!!!!!!!");
-  
+
   // State from handle voice
   const [spokenText, setSpokenText] = useState<string>("");
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
 
-  console.log(speechEnd, "Speech End")
-  console.log(spokenText , "Spoken Text")
+  console.log(speechEnd, "Speech End");
+  console.log(spokenText, "Spoken Text");
 
   const [animationKey, setAnimationKey] = useState<number>(0);
-  console.log(animationKey , "Animation Key");
-  
+  console.log(animationKey, "Animation Key");
+
   const [userScore, setUserScore] = useState<number>(0);
-  
+
   const index = useRef<number>(0);
-  console.log(index.current , "Current Index");
+  console.log(index.current, "Current Index");
 
   const [feeling, setFeeting] = useState<string>("😊 Sa incepem");
-  console.log(feeling , "Feeling");
-  
-  const similar = percentageFunc(spokenText, givenText[index.current]);
-  console.log(similar , "Similarity");
-  
+  console.log(feeling, "Feeling");
+
+  const similar = percentageFunc(spokenText, questions[index.current]);
+  console.log(similar, "Similarity");
+
   const scoreboard = manageScore(similar);
   console.log(scoreboard);
 
@@ -44,58 +52,52 @@ const VoiceInput: React.FC = () => {
     setAnimationKey((prevKey) => prevKey + 1);
   }, [setAnimationKey]);
 
-  console.log();
-  
 
-  // console.log(incrementScore());
-
-  const handleBack = () => {
-     addAnimation();
+  const resetValues = () => {
     resetAnimation();
-    addAnimation();
-    setSpokenText("");
-    resetAnimation();
-    index.current--;
-  };
-
-  const handleFront = useCallback(() => {
-    console.log("HANDLE FRONT");
-     addAnimation();
-    resetAnimation();
-    index.current++;
     setSpokenText("");
     setFeeting("😊 Sa incepem");
     const scoreboard = document.querySelector(".score-board") as HTMLElement;
     scoreboard.style.color = "black";
-  }, [ resetAnimation ]);
+  };
+
+  const handleBack = () => {
+    addAnimation();
+    resetValues();
+    index.current--;
+  };
+
+  const handleFront = useCallback(async () => {
+    console.log("HANDLE FRONT");
+    await addAnimation();
+    resetValues();
+    index.current++;
+  }, [resetAnimation]);
 
   useEffect(() => {
-
-    setTimeout(()=>{
-    if (speechEnd && spokenText) {
-      console.log("USE EFFECT");
-        handleFront()
-      
-      
-    }
-  },1000)
+    setTimeout(() => {
+      if (speechEnd && spokenText) {
+        console.log("USE EFFECT");
+        handleFront();
+      }
+    }, 500);
   }, [speechEnd]);
 
   // Change text based on similarity
-  // useEffect(() => {
-  //   if (similar === 0) return;
-  //   similar < 5
-  //     ? setFeeting("😊 Sa incepem")
-  //     : similar <= 50
-  //     ? setFeeting("😔 Poți face mai bine")
-  //     : similar > 50 && similar < 80
-  //     ? setFeeting("😯 Te apropii!")
-  //     : similar > 80 && similar < 90
-  //     ? setFeeting("😃 Lucru excelent!")
-  //     : similar > 90
-  //     ? setFeeting("😍 Ai făcut uimitor!")
-  //     : setFeeting("");
-  // }, [similar]);
+  useEffect(() => {
+    if (similar === 0) return;
+    similar < 5
+      ? setFeeting("😊 Sa incepem")
+      : similar <= 50
+      ? setFeeting("😔 Poți face mai bine")
+      : similar > 50 && similar < 80
+      ? setFeeting("😯 Te apropii!")
+      : similar > 80 && similar < 90
+      ? setFeeting("😃 Lucru excelent!")
+      : similar > 90
+      ? setFeeting("😍 Ai făcut uimitor!")
+      : setFeeting("");
+  }, [similar]);
 
   useEffect(() => {
     if (scoreboard === "point" && speechEnd) {
@@ -130,52 +132,63 @@ const VoiceInput: React.FC = () => {
       <Header backButton={backBtn} />
       <main>
         <span className="score-board">
-          {userScore}/{givenText.length}
+          {userScore}/{questions.length}
         </span>
-        <div className="container-given-text">
-          <h1 key={animationKey} className="animated-text">
-            {givenText[index.current]}
-          </h1>
-        </div>
+        {/* IF THE EXERSIS IS OVER DISPLAY END */}
+        {index.current === questions.length ? (
+          <div className="container-given-text">
+            <h1 key={animationKey} className="animated-text">
+              Felicitari ai terminat exercitiul!
+            </h1>
+            <Link to="/exercises">
+      <button>Continua</button>
+    </Link>
+          </div>
+        ) : (
+          <div className="container-given-text">
+            <h1 key={animationKey} className="animated-text">
+              {questions[index.current]}
+            </h1>
+          </div>
+        )}
+
         <div className="container-mid">
-      
-              <svg
-                className="back-arrow"
-                onClick={() => (speechEnd ? handleBack() : "")}
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height={index.current == 0 || !speechEnd ? "0" : "40"}
-                viewBox="0 0 175 255"
-                fill="#black"
-                transform="rotate(180)"
-              >
-                <path
-                  d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
-                  fill="#E5E580"
-                />
-              </svg>
-          
+          <svg
+            className="back-arrow"
+            onClick={() => (speechEnd ? handleBack() : "")}
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height={index.current == 0 || !speechEnd ? "0" : "40"}
+            viewBox="0 0 175 255"
+            fill="#black"
+            transform="rotate(180)"
+          >
+            <path
+              d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
+              fill="#E5E580"
+            />
+          </svg>
+
           <p className="similar-container">
             Similaritate: {similar.toFixed(1)}% <br />
             {feeling}
           </p>
           {/* Make function to add the overall score somewhere and reset it */}
-          
-            <svg
-              onClick={() => (speechEnd ? handleFront() : "")}
-              className="front-arrow"
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height={!speechEnd ? "0" : "40"}
-              viewBox="0 0 175 255"
-              fill="#black"
-            >
-              <path
-                d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
-                fill="#E5E580"
-              />
-            </svg>
-       
+
+          <svg
+            onClick={() => (speechEnd ? handleFront() : "")}
+            className="front-arrow"
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height={!speechEnd ? "0" : "40"}
+            viewBox="0 0 175 255"
+            fill="#black"
+          >
+            <path
+              d="M47.7037 0L0 47.7037L79.5061 127.21L0 206.716L47.7037 254.419L174.913 127.21L47.7037 0Z"
+              fill="#E5E580"
+            />
+          </svg>
         </div>
         <div className="container-btns">
           {" "}

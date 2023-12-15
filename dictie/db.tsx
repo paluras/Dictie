@@ -1,8 +1,8 @@
-const givenText = [
+export const givenText = [
   "șase sași în șase saci",
   "O babă bălană mănâncă o banană babană.",
   "Cupă cu capac, capac cu cupă.",
-  "Pe cap un capac, pe capac un ac.",
+   "Nașpa, nasol stau în nămol ca un actor jucând un rol!",
   "Clopotarul clătina clopotul clopotniței."
   // "Retevei de tei pe mirişte de mei.",
   // "Zecele de pică mare are masa la picioare.",
@@ -26,4 +26,11 @@ const givenText = [
   // "O coropișniță și-un coropișnițoi se coropișniteau la noi pe gunoi. Nu coropișnița coropișnițea pe coropișnițoi, ci coropișnițoiul coropișnițea pe coropișniță.",
 ]; // Set your desired text here
 
-export default givenText;
+
+export const givenText2 = [
+  "Retevei de tei pe mirişte de mei.",
+  "Zecele de pică mare are masa la picioare.",
+  "O barză brează face zarvă pe-o varză",
+  "Bucur și Bucura se bucură că Bucurel e bucuros în București.",
+  "Leul lăudat lipește abțibilduri lucioase.",
+]
