@@ -6,20 +6,25 @@ import "../style/style.animations.css";
 import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import percentageFunc from "../utils/percentCalc.tsx";
 import manageScore from "../utils/manageScore.tsx";
 
-interface VoiceInputProps {
-  questions: string[];
-}
 
 interface VoiceInputProps {
   questions: string[];
 }
+
 
 const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   //  REFACTOR THIS COMPONENT AGAIN
+
+
+
+  
+
+
+
   console.log("FUNCTION START!!!!!!!!!!!!!");
 
   // State from handle voice
@@ -111,7 +116,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   }, [speechEnd, scoreboard]);
 
   const backBtn = (
-    <Link to="..">
+    <Link to="/exercises">
       <button>Back</button>
     </Link>
   );
@@ -134,15 +139,15 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
         <span className="score-board">
           {userScore}/{questions.length}
         </span>
-        {/* IF THE EXERSIS IS OVER DISPLAY END */}
+        {/* IF THE EXERcIS IS OVER DISPLAY END */}
         {index.current === questions.length ? (
           <div className="container-given-text">
             <h1 key={animationKey} className="animated-text">
               Felicitari ai terminat exercitiul!
             </h1>
             <Link to="/exercises">
-      <button>Continua</button>
-    </Link>
+                <button className="animated-text">Continua</button>
+             </Link>
           </div>
         ) : (
           <div className="container-given-text">
@@ -152,6 +157,8 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
           </div>
         )}
 
+{index.current === questions.length ? "" :
+<>
         <div className="container-mid">
           <svg
             className="back-arrow"
@@ -190,6 +197,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
             />
           </svg>
         </div>
+        
         <div className="container-btns">
           {" "}
           <button
@@ -206,6 +214,8 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
             Stop
           </button>
         </div>
+        </>
+        }
         {spokenText && (
           <div className="spoken-text">
             <h2 className="h2-title"> Dictie-metrul a inteles:</h2>
