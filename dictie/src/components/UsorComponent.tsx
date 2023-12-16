@@ -21,64 +21,44 @@ const UsorComp: React.FC = () => {
       localStorage.setItem("visitedLinks", JSON.stringify(newVisitedLinks));
     }
   };
+  const links = [
+    { path: "/exercises/easy", text: "sase sasi" },
+    { path: "/exercises/easy-one", text: "retevei" },
+    { path: "/exercises/easy-two", text: "nămol" },
+    { path: "/exercises/easy-three", text: "vultur" },
+    { path: "/exercises/easy-four", text: "greierii" },
+    { path: "/exercises/easy-five", text: "meduze" },
+    { path: "/exercises/easy-six", text: "o babă" },
+    { path: "/exercises/easy-seven", text: "gârbovit" },
+    { path: "/exercises/easy-eight", text: "buburuze" },
+    { path: "/exercises/easy-nine", text: "curcanul" },
+  ];
+  // .map over the array of links and render them
 
   return (
     <div>
       <h1>usor</h1>
-      <ul>
-        <Link
-          to={"/exercises/easy"}
-          onClick={() => handleClick("/exercises/easy")}
-        >
-          <li
-            className={
-              visitedLinks.includes("/exercises/easy") ? "visited" : "list-item"
-            }
-          >
-            sase sasi
-          </li>
-        </Link>
-        <Link
-          onClick={() => handleClick("/exercises/easy-two")}
-          to={"/exercises/easy-two"}
-        >
-          <li
-            className={
-              visitedLinks.includes("/exercises/easy-two")
-                ? "visited"
-                : "list-item"
-            }
-          >
-            retevei
-          </li>
-        </Link>
-        <Link
-          to={"/exercises/easy-three"}
-          onClick={() => handleClick("/easy-three")}
-        >
-          <li
-            className={
-              visitedLinks.includes("/easy-three") ? "visited" : "list-item"
-            }
-          >
-            nămol
-          </li>
-        </Link>
-        <Link
-          onClick={() => handleClick("/easy-four")}
-          to={"/exercises/easy-four"}
-        >
-          <li
-            className={
-              visitedLinks.includes("/easy-four") ? "visited" : "list-item"
-            }
-          >
-            vultur
-          </li>
-        </Link>
-      </ul>
-    </div>
-  );
+            <ul>
+              {links.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => handleClick(link.path)}
+                >
+                  <li
+                    className={
+                      visitedLinks.includes(link.path) ? "visited" : "list-item"
+                    }
+                  >
+                    {link.text}
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+        );
+    
+ 
 };
 
 export default UsorComp;

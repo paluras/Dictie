@@ -18,7 +18,7 @@ const ExercisesPage: React.FC = () => {
     return (
         <div>
             <Header backButton={backBtnElement}/>
-
+        <div className="exercise-main">
             {/* LeftBar component */}
             <div className="left-bar">
                 <ul>
@@ -32,6 +32,7 @@ const ExercisesPage: React.FC = () => {
                 {level === "Mediu" && <MidComp />}
                 {level === "Greu" && <GreuComp />}
             </div>
+        </div>
         </div>
     );
 };

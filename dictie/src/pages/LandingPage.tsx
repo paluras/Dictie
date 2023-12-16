@@ -4,17 +4,20 @@ import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
 import "../style/style.animations.css";
+import "./../index.css"
 
 const LandingPage: React.FC = () => {
-
-
-
+  const backBtn = (
+    <div className="back-btn">
+      <Link to="/exercises">
+        <button>Exercitii</button>
+      </Link>
+    </div>
+  );
 
   return (
     <>
-      <Header backButton={  <Link to="/exercises">
-      <button>Exercitii</button>
-    </Link>} />
+      <Header backButton={backBtn} />
       <main className="landing-main">
         <div className="container-left">
           {" "}
@@ -22,8 +25,7 @@ const LandingPage: React.FC = () => {
             noua metodă de perfecționare a dicției.
           </h1>
           <h2 className="description animated-left-side">
-            O abordare inovatoare care integrează tehnologiile avansate cu
-            exercițiile practice.{" "}
+            O noua abordare care integrează tehnologia cu exercițiile practice.{" "}
           </h2>
           {/* Create button */}
           <div className="btn-container">
