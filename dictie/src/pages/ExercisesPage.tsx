@@ -14,7 +14,7 @@ const ExercisesPage: React.FC = () => {
   const user = useContext(AuthContext);
   const [level, setLevel] = useState<string>("Usor");
   console.log(level, "Level");
-  console.log(user, "user");
+
 
   return (
     <div>

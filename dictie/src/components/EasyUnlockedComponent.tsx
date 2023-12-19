@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getFirestore, collection } from "firebase/firestore";
-import { getDocs } from "firebase/firestore";
+import { getDocs , getDoc , doc } from "firebase/firestore";
 import { setUserArray } from "../utils/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
@@ -16,7 +16,9 @@ const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
   const [visitedLinks, setVisitedLinks] = useState<string[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const user = useContext(AuthContext);
-
+ 
+  
+// Code split this
   useEffect(() => {
     const fetchExercises = async () => {
       const firestore = getFirestore();
@@ -25,32 +27,28 @@ const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
       const exercisesArray = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         text: doc.data().text,
+    
       }));
 
       setExercises(exercisesArray);
-
-      // REFACTOR TU USE DB
-      const storedLinks = localStorage.getItem("visitedLinks");
-      if (storedLinks) {
-        setVisitedLinks(JSON.parse(storedLinks));
+      if (user) {
+        const userDoc = await getDoc(doc(firestore, 'users', user.uid));
+        console.log(userDoc.data());
+        
+        if (userDoc.exists()) {
+          setVisitedLinks(userDoc.data().idExercise || []);
+        }
       }
     };
-
-
     fetchExercises();
-  }, [dbArray]);
+  }, [dbArray, user]);
+
 
   const handleClick = (user: string | undefined, id: string[]) => {
     if (!user) return;
     setUserArray(user, id);
   };
 
-  // if (!visitedLinks.includes(path)) {
-  //   const newVisitedLinks = [...visitedLinks, path];
-  //   setVisitedLinks(newVisitedLinks);
-
-  //   localStorage.setItem("visitedLinks", JSON.stringify(newVisitedLinks));
-  // }
   return (
     <div>
       <h1>usor</h1>
@@ -61,10 +59,7 @@ const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
           <Link
             key={link.id}
             to={link.id}
-            // Handle click to change to a function that
-            // adds the id from the db to a user personal Array
-            // And when we log in again , we filter the exercises and color them acordingly
-            onClick={() => handleClick(user?.providerId, [link.id])}
+            onClick={() => handleClick(user?.uid, [link.id])}
           >
             <li
               className={

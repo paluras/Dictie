@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../context/AuthContext";
+
 import { useContext } from "react";
 import { signInWithGoogle, signOutUser } from "../utils/firebase";
 
@@ -16,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({backButton}) => {
   const [userName, setUserName] = React.useState("");
   const [userImageSrc, setUserImageSrc] = React.useState("");
   console.log(userName);
-  console.log(userImageSrc);
+
 // refactor this!!!!!!!!!!!!!!!!
   React.useEffect(() => {
     if (user) {

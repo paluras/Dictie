@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 // import { onAuthStateChanged } from "firebase/auth";
 
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, arrayUnion } from "firebase/firestore";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -53,7 +53,7 @@ export const signOutUser = async () => {
 export const setUserArray = async (userId: string, idExercise: string[]) => {
   const db = getFirestore(app);
   try {
-    await setDoc(doc(db, 'users', userId), { idExercise }, { merge: true });
+    await setDoc(doc(db, 'users', userId), { idExercise: arrayUnion(...idExercise) }, { merge: true });
     console.log('Array set for user', userId);
   } catch (error) {
     console.error('Error setting array for user', error);
