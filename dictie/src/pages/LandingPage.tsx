@@ -46,7 +46,7 @@ const LandingPage: React.FC = () => {
                 </svg>
               </span>
 
-              <Link to="/exercises/easy">Incearca!</Link>
+              <Link to="/exercises/0">Incearca!</Link>
             </button>
             <svg
               className="anim-two"

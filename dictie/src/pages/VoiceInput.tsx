@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import handleVoiceInput from "../utils/handleVoice.tsx";
-import addAnimation from "../utils/addAnimation";
+import addAnimation from "../utils/addAnimation.tsx";
 
 import "../style/style.animations.css";
 import "../style/App.css";

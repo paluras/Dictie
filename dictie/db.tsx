@@ -22,11 +22,11 @@ export const givenText = {
   easyTwo: {
     boolValue: false,
     arrayValue: [
-      "Nașpa, nasol stau în nămol ca un actor jucând un rol!",
+      "Cinci cocosi cocosati cocoseste cinci cocose.",
       "Un vultur stă pe-un pisc c-un pix în plisc",
       "Domnule dudar, dă-mi două dude dulci din dudul dumitale de dincolo de Dunăre!",
       "Capra calca-n piatra,Piatra crapa-n patru; Crăpa-i-ar capul caprei, Precum a crapat piatra-n patru.",
-      "Unui tâmplr i s-a întâmplat o întâmplare. \nAlt tâmplar, auzind de întâmplarea tâmplarului \nde la tâmplărie, a venit și s-a lovit cu tâmpla de \n tâmplăria tâmplarului cu întâmplarea",
+      "Unui tâmplar i s-a întâmplat o întâmplare. \nAlt tâmplar, auzind de întâmplarea tâmplarului \nde la tâmplărie, a venit și s-a lovit cu tâmpla de \n tâmplăria tâmplarului cu întâmplarea",
     ],
   },
   easyThree: {
@@ -110,7 +110,7 @@ export const givenText = {
       "Șapte șopârle săpate sapă săpături săptămânale.",
       "Fără frică, în frig frământă frământată fără frișcă.",
       "Fă frumușică firimitură fără să frângi frământătura.",
-      "Cocoșul roșu a cocoșat pe coclauri cinci cocoși roșii.",
+     
       "Arcașul țintar își întinde arcuşul să întindă întinsul.",
       "Rebătător, răzbunător, arzător, revoltat, arici iritat.",
       "Pot să fac o sută de feluri de mâncare fără să flămânzesc.",

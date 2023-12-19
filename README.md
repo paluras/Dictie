@@ -21,7 +21,7 @@
 
 ## Contributing
 
-Contributions are welcome! Please follow the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions are welcome!
 
 ## License
 

@@ -9,16 +9,11 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/exercises/:level" element={<Exercise />} />
-        <Route path="/exercises" element={<ExercisesPage />}/>
-        <Route path=":level" element={<Exercise />} />
-     
-
+        <Route path="/exercises" element={<ExercisesPage />} />
+       
       </Routes>
     </Router>
   );
 }
-
-
-
 
 export default App;
