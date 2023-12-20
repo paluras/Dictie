@@ -1,48 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getFirestore, collection } from "firebase/firestore";
-import { getDocs , getDoc , doc } from "firebase/firestore";
+import { getDocs, getDoc, doc } from "firebase/firestore";
 import { setUserArray } from "../utils/firebase";
 import { AuthContext } from "../context/AuthContext";
+import { CollectionContext } from "../context/CollectionContext";
 import { useContext } from "react";
 import "../style/style.exercise.css";
 
-interface Exercise {
+interface ExerciseList {
   id: string;
   text: string;
 }
 
-const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
+type CollectionContextType = {
+  document: string;
+  setDocument: (doc: string) => void;
+};
+const ExercisesList: React.FC<{ title: string }> = ({ title }) => {
   const [visitedLinks, setVisitedLinks] = useState<string[]>([]);
-  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [exercises, setExercises] = useState<ExerciseList[]>([]);
   const user = useContext(AuthContext);
- 
-  
-// Code split this
+  const { document } = useContext<CollectionContextType>(
+    CollectionContext as unknown as React.Context<CollectionContextType>
+  );
+
+  // Code split this
   useEffect(() => {
     const fetchExercises = async () => {
       const firestore = getFirestore();
-      const querySnapshot = await getDocs(collection(firestore, dbArray));
+      const querySnapshot = await getDocs(collection(firestore, document));
 
       const exercisesArray = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         text: doc.data().text,
-    
       }));
 
       setExercises(exercisesArray);
       if (user) {
-        const userDoc = await getDoc(doc(firestore, 'users', user.uid));
+        const userDoc = await getDoc(doc(firestore, "users", user.uid));
         console.log(userDoc.data());
-        
+
         if (userDoc.exists()) {
           setVisitedLinks(userDoc.data().idExercise || []);
         }
       }
     };
     fetchExercises();
-  }, [dbArray, user]);
-
+  }, [user, document]);
 
   const handleClick = (user: string | undefined, id: string[]) => {
     if (!user) return;
@@ -51,11 +56,9 @@ const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
 
   return (
     <div>
-      <h1>usor</h1>
+      <h1>{title}</h1>
       <ul>
         {exercises.map((link) => (
-        
-          
           <Link
             key={link.id}
             to={link.id}
@@ -75,4 +78,4 @@ const EasyUnlockedComp: React.FC<{ dbArray: string }> = ({ dbArray }) => {
   );
 };
 
-export default EasyUnlockedComp;
+export default ExercisesList;

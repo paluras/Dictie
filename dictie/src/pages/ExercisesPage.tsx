@@ -1,20 +1,23 @@
 import React from "react";
 import Header from "../components/Header";
 import "../style/style.exercise.css";
-import { useState } from "react";
+import ExerciseList from "../components/ExerciseList";
 
-import EasyUnlockedComp from "../components/EasyUnlockedComponent";
-import LvlsLockedComp from "../components/LvlsLockedComponent";
 import GreuComp from "../components/GreuComponent";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { CollectionContext } from "../context/CollectionContext";
 
+type CollectionContextType = {
+  document: string;
+  setDocument: (doc: string) => void;
+};
 const ExercisesPage: React.FC = () => {
-  // onAuthStateChanged(auth, (user) => {
-  const user = useContext(AuthContext);
-  const [level, setLevel] = useState<string>("Usor");
-  console.log(level, "Level");
 
+  const user = useContext(AuthContext);
+  // ?????????????? how tf to fix this type error
+  const { document, setDocument } = useContext<CollectionContextType>(CollectionContext as unknown as React.Context<CollectionContextType>);
+ 
 
   return (
     <div>
@@ -23,24 +26,24 @@ const ExercisesPage: React.FC = () => {
         {/* LeftBar component */}
         <div className="left-bar">
           <ul>
-            <li onClick={() => setLevel("Usor")}>Usor</li>
-            <li onClick={() => setLevel("Mediu")}>Mediu</li>
-            <li onClick={() => setLevel("Greu")}>Greu</li>
+            <li onClick={() => setDocument("exercises-easy")}>Usor</li>
+            <li onClick={() => setDocument("exercises-mid")}>Mediu</li>
+            <li onClick={() => setDocument("exercises-hard")}>Greu</li>
           </ul>
         </div>
         <div className="right-main">
-          {level === "Usor" && <EasyUnlockedComp dbArray={"exercises-easy"} />}
+          {document === "exercises-easy" && <ExerciseList title="Usor"  />}
 
 
           {user ? (
-           level == "Mediu" && <LvlsLockedComp dbArray={"exercises-mid"} />
+           document == "exercises-mid" && <ExerciseList title="Mediu"  />
           ) : (
-            level == "Mediu" && <h1>Log in to unlock</h1>
+           document == "exercises-mid" && <h1>Log in to unlock</h1>
           )}
          
          
          
-          {level === "Greu" && <GreuComp />}
+          { document == "exercises-hard" && <GreuComp />}
         </div>
       </div>
     </div>

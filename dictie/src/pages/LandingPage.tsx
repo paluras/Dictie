@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
+import github from "../assets/Github.png";
+import linkedIn from "../assets/LinkedIn.png";
 import "../style/style.animations.css";
-import "./../index.css"
+import "./../index.css";
 
 const LandingPage: React.FC = () => {
   const backBtn = (
@@ -133,6 +135,20 @@ const LandingPage: React.FC = () => {
           </svg>
         </div>
       </main>
+      <footer>
+        <h4>Contact</h4>
+        <div className="img-container">
+          {" "}
+          <a href="https://www.linkedin.com/in/palura-andrei-588991245">
+            <img width={"32px"} src={linkedIn} alt="linkedIn" />
+          </a>
+          <a href="https://github.com/paluras/Dictie">
+          <img width={"32px"} src={github} alt="github" />
+          </a>
+        </div>
+
+        <h6>made by : Palura Andrei</h6>
+      </footer>
     </>
   );
 };
