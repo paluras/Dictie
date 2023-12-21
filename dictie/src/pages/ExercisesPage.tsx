@@ -35,6 +35,8 @@ const ExercisesPage: React.FC = () => {
           {user
             ? document == "exercises-mid" && <ExerciseList title="Mediu" />
             : document == "exercises-mid" && <h1>Log in to unlock</h1>}
+            { 
+             document == "exercises-hard" && <h1>Coming soon</h1>}
         </div>
       </div>
     </div>

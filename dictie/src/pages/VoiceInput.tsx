@@ -51,7 +51,6 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   };
 
   const handleFront = useCallback(async () => {
-    console.log("HANDLE FRONT");
     await addAnimation();
     resetValues();
     index.current++;
