@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
-import github from "../assets/Github.png";
-import linkedIn from "../assets/LinkedIn.png";
+import github from "../assets/gitHub.png";
+import linkedIn from "../assets/linkedIn.png";
 import "../style/style.animations.css";
 import "./../index.css";
 
@@ -143,7 +143,7 @@ const LandingPage: React.FC = () => {
             <img width={"32px"} src={linkedIn} alt="linkedIn" />
           </a>
           <a href="https://github.com/paluras/Dictie">
-          <img width={"32px"} src={github} alt="github" />
+            <img width={"32px"} src={github} alt="github" />
           </a>
         </div>
 
