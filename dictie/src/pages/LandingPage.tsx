@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
-import github from "../assets/gitHub.png";
+import github from "../assets/github.png";
 import linkedIn from "../assets/linkedIn.png";
 import "../style/style.animations.css";
 import "./../index.css";
