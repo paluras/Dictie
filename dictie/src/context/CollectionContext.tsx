@@ -9,3 +9,6 @@ export const CollectionContext = React.createContext<CollectionContextType>({
     document: "exercises-easy",
     setDocument: () => {}
 });
+
+
+

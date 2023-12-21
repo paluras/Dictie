@@ -296,9 +296,9 @@ max-width: 200px;
   .half-ring {
     scale: 0.4;
   }
-  .container-given-text {
+  /* .container-given-text {
     height: 40cqh;
-  }
+  } */
 }
 @media (max-width: 350px) {
   .half-ring {

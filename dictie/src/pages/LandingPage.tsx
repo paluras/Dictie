@@ -59,10 +59,10 @@ const LandingPage: React.FC = () => {
               <g
                 fill="none"
                 stroke="#1a1908"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-miterlimit="10"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit="10"
               >
                 <path
                   className="path"
@@ -88,9 +88,9 @@ const LandingPage: React.FC = () => {
             <g
               fill="none"
               stroke="#000"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeMiterlimit="10"
             >
               <path
                 className="path"
@@ -100,7 +100,7 @@ const LandingPage: React.FC = () => {
 
               <path
                 className="path"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 pathLength="1"
                 d="M2.716 33.124c3.721 2.325 4.349 6.603 7.402 9.481 1.046-3.027 3.443-9.07 6.125-11.113"
               />
@@ -116,10 +116,10 @@ const LandingPage: React.FC = () => {
             <g
               fill="none"
               stroke="#1a1908"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
             >
               <path
                 className="path"

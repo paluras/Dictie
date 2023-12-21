@@ -50,7 +50,7 @@ export const signOutUser = async () => {
 };
 
 
-export const setUserArray = async (userId: string, idExercise: string[]) => {
+export const setFirebaseUserArray = async (userId: string, idExercise: string[]) => {
   const db = getFirestore(app);
   try {
     await setDoc(doc(db, 'users', userId), { idExercise: arrayUnion(...idExercise) }, { merge: true });
