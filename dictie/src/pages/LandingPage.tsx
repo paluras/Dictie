@@ -75,7 +75,7 @@ const LandingPage: React.FC = () => {
         </div>
 
         <div className="container-right">
-          <Link to={"/easy"} className="link-img">
+          <Link to={"/exercises/0"} className="link-img">
             <img className="img-preview" src={imgPreview} alt="img-preview" />
           </Link>
 

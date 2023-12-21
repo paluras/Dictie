@@ -7,9 +7,6 @@ import { CollectionProvider } from "./provider/CollectionProvider";
 
 
 function App() {
-
-
-
   return (
   <CollectionProvider>
       <Router>
