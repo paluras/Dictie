@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
+import github from "/github.png"
+import linkedIn from "/linkedIn.png";
 import "../style/style.animations.css";
-import "./../index.css"
+import "./../index.css";
+
 
 const LandingPage: React.FC = () => {
+ console.log(github);
+ 
+
   const backBtn = (
     <div className="back-btn">
       <Link to="/exercises">
@@ -46,7 +52,7 @@ const LandingPage: React.FC = () => {
                 </svg>
               </span>
 
-              <Link to="/exercises/easy">Incearca!</Link>
+              <Link to="/exercises/0">Incearca!</Link>
             </button>
             <svg
               className="anim-two"
@@ -57,10 +63,10 @@ const LandingPage: React.FC = () => {
               <g
                 fill="none"
                 stroke="#1a1908"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-miterlimit="10"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit="10"
               >
                 <path
                   className="path"
@@ -73,7 +79,7 @@ const LandingPage: React.FC = () => {
         </div>
 
         <div className="container-right">
-          <Link to={"/easy"} className="link-img">
+          <Link to={"/exercises/0"} className="link-img">
             <img className="img-preview" src={imgPreview} alt="img-preview" />
           </Link>
 
@@ -86,9 +92,9 @@ const LandingPage: React.FC = () => {
             <g
               fill="none"
               stroke="#000"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeMiterlimit="10"
             >
               <path
                 className="path"
@@ -98,7 +104,7 @@ const LandingPage: React.FC = () => {
 
               <path
                 className="path"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 pathLength="1"
                 d="M2.716 33.124c3.721 2.325 4.349 6.603 7.402 9.481 1.046-3.027 3.443-9.07 6.125-11.113"
               />
@@ -114,10 +120,10 @@ const LandingPage: React.FC = () => {
             <g
               fill="none"
               stroke="#1a1908"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
             >
               <path
                 className="path"
@@ -133,6 +139,20 @@ const LandingPage: React.FC = () => {
           </svg>
         </div>
       </main>
+      <footer>
+        <h4>Contact</h4>
+        <div className="img-container">
+          {" "}
+          <a href="https://www.linkedin.com/in/palura-andrei-588991245">
+            <img width={"32px"} src={linkedIn} alt="linkedIn" />
+          </a>
+          <a href="https://github.com/paluras/Dictie">
+            <img width={"32px"} src={github} alt="github" />
+          </a>
+        </div>
+
+        <h6>made by : Palura Andrei</h6>
+      </footer>
     </>
   );
 };

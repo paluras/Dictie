@@ -1,5 +1,6 @@
 .landing-main {
   display: flex;
+
   flex-direction: row;
   align-items: start;
   justify-content: start;
@@ -152,6 +153,24 @@
   box-shadow: -10px 10px 10px 4px rgba(153, 151, 128, 0.295);
 }
 
+
+
+
+
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -10px 10px 10px 4px rgba(153, 151, 128, 0.295);
+   & h4 , h6{
+     margin: 0;
+     padding: 0;
+   
+     color: var(--text-second);
+   }
+
+
+}
 @media (max-width: 1000px) {
   .animated-left-side {
     font-size: 3.25rem;
