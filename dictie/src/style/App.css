@@ -211,7 +211,7 @@ max-width: 200px;
   flex-direction: column;
   overflow: scroll;
   text-align: center;
-  height: 50cqh;
+  height: 55cqh;
   width: 90vw;
   padding: 20px;
   align-items: center;
@@ -229,7 +229,7 @@ max-width: 200px;
 
 .animated-text {
   animation: appearText 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
-  overflow: hidden;
+
   transition: 1s;
   z-index: 1000;
 }
