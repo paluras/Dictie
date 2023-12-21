@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
-import github from "../assets/github.png";
-import linkedIn from "../assets/linkedIn.png";
+import github from "/github.png"
+import linkedIn from "/linkedIn.png";
 import "../style/style.animations.css";
 import "./../index.css";
 
+
 const LandingPage: React.FC = () => {
+ console.log(github);
+ 
+
   const backBtn = (
     <div className="back-btn">
       <Link to="/exercises">
