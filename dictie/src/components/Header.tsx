@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
-
 import { useContext } from "react";
 import { signInWithGoogle, signOutUser } from "../utils/firebase";
 
@@ -10,13 +9,16 @@ type HeaderProps = {
   backButton: ReactNode;
 };
 
-const Header: React.FC<HeaderProps> = ({ backButton }) => {
+const Header: React.FC<HeaderProps> = ({
+  backButton,
+}: {
+  backButton: ReactNode;
+}) => {
   const user = useContext(AuthContext);
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [userImageSrc, setUserImageSrc] = React.useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userImageSrc, setUserImageSrc] = useState("");
 
-  // refactor this!!!!!!!!!!!!!!!!
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       // User is signed in
 
@@ -49,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ backButton }) => {
 
         {loggedIn && (
           <>
-            <button className="signin" onClick={() => signOutUser()}>
+            <button type="button" className="signin" onClick={() => signOutUser()}>
               Log out{" "}
             </button>
             <img

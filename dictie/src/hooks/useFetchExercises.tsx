@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { getFirestore, collection } from "firebase/firestore";
 import { getDocs} from "firebase/firestore";
 import { useContext } from "react";
-import { CollectionContext } from "../context/CollectionContext";
+import { CollectionContext , CollectionContextType } from "../context/CollectionContext";
 
-interface ExerciseList {
+export interface ExerciseList {
   id: string;
   text: string;
 }
-type CollectionContextType = {
-  document: string;
-  setDocument: (doc: string) => void;
-};
+
 export const useFetchExercises = () => {
   const [exercises, setExercises] = useState<ExerciseList[]>([]);
   const { document } = useContext<CollectionContextType>(

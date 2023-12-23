@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 interface ExerciseFinishProps {
@@ -14,7 +14,7 @@ const ExerciseFinish: React.FC<ExerciseFinishProps> = ({animationKey}) => {
           Felicitari ai terminat exercitiul!
         </h1>
         <Link to="/exercises">
-          <button className="animated-text">Continua</button>
+          <button type='button' className="animated-text">Continua</button>
         </Link>
       </div>
     );
