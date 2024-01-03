@@ -1,9 +1,9 @@
-import React from "react";
+
 import Header from "../components/Header";
 import "../style/style.exercise.css";
 import ExerciseList from "../components/exercise/ExerciseList";
 
-import { useContext } from "react";
+import { useContext  } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CollectionContext } from "../context/CollectionContext";
 
@@ -19,7 +19,7 @@ const ExercisesPage: React.FC = () => {
 
   return (
     <div>
-      <Header backButton={undefined} />
+      <Header backButton={undefined} logInBtn={true}  />
       <div className="exercise-main">
         {/* LeftBar component */}
         <div className="left-bar">

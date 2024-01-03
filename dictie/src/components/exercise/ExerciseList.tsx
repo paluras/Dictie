@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { setFirebaseUserArray } from "../../utils/firebase";
 import { AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
 
 import {
   CollectionContext,
@@ -10,7 +9,7 @@ import {
 import "../../style/style.exercise.css";
 import { useFetchExercises, ExerciseList } from "../../hooks/useFetchExercises";
 import { useFetchVisited } from "../../hooks/useFetchVisited";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 
 const ExercisesList: React.FC<{ title: string }> = ({ title }) => {
   const user = useContext(AuthContext);
@@ -18,6 +17,7 @@ const ExercisesList: React.FC<{ title: string }> = ({ title }) => {
   const [exercises, setExercises] = useState<ExerciseList[]>([]);
   const fetchedExercises = useFetchExercises();
   const visitedLinks = useFetchVisited();
+console.log(fetchedExercises);
 
   useEffect(() => {
     const localStorageExercises = localStorage.getItem(document);

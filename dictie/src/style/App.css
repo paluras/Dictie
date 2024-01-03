@@ -7,7 +7,7 @@ main {
   padding: 0 20px;
   height: calc(100vh - 91px);
 }
-
+/* Write better css pls, also needs refactor */
 header{
   
   z-index: 1000;

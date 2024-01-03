@@ -1,18 +1,20 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect,  useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
 import { signInWithGoogle, signOutUser } from "../utils/firebase";
 
 type HeaderProps = {
   backButton: ReactNode;
+  logInBtn:boolean
 };
 
 const Header: React.FC<HeaderProps> = ({
   backButton,
+  logInBtn
 }: {
   backButton: ReactNode;
+  logInBtn:boolean
 }) => {
   const user = useContext(AuthContext);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -20,19 +22,46 @@ const Header: React.FC<HeaderProps> = ({
 
   useEffect(() => {
     if (user) {
-      // User is signed in
-
       setUserImageSrc(user.photoURL || "");
       setLoggedIn(true);
       console.log("User is signed in:", user.displayName);
     } else {
-      // User is signed out
       setUserImageSrc("");
-
       setLoggedIn(false);
       console.log("No user is signed in.");
     }
   }, [user]);
+
+  const LogInBtn = () => {
+    return (
+      <button
+        type="button"
+        className="signin"
+        onClick={() => signInWithGoogle()}
+      >
+        Log in
+      </button>
+    );
+  };
+
+  const LogOutBtn = () => {
+    return (
+      <>
+        <button type="button" className="signin" onClick={() => signOutUser()}>
+          Log out{" "}
+        </button>
+        <img
+          style={{
+            width: "32px",
+            borderRadius: "100px",
+            border: "2px solid #d0deff",
+          }}
+          src={userImageSrc}
+          alt="profile pic"
+        />
+      </>
+    );
+  };
 
   return (
     <header>
@@ -42,29 +71,11 @@ const Header: React.FC<HeaderProps> = ({
 
       <div className="right-header">
         {backButton}
+    
+        {!loggedIn && logInBtn  && <LogInBtn />}
 
-        {!loggedIn && (
-          <button className="signin" onClick={() => signInWithGoogle()}>
-            Log in
-          </button>
-        )}
-
-        {loggedIn && (
-          <>
-            <button type="button" className="signin" onClick={() => signOutUser()}>
-              Log out{" "}
-            </button>
-            <img
-              style={{
-                width: "32px",
-                borderRadius: "100px",
-                border: "2px solid #d0deff",
-              }}
-              src={userImageSrc}
-              alt="profile pic"
-            />
-          </>
-        )}
+        {loggedIn && logInBtn && <LogOutBtn />}
+   
       </div>
     </header>
   );

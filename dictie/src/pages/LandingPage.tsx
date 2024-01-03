@@ -1,29 +1,39 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
-import github from "/github.png"
+import github from "/github.png";
 import linkedIn from "/linkedIn.png";
 import "../style/style.animations.css";
 import "./../index.css";
-
+import { useContext, useEffect } from "react";
+import {
+  CollectionContext,
+  CollectionContextType,
+} from "../context/CollectionContext";
 
 const LandingPage: React.FC = () => {
- console.log(github);
- 
 
+
+  //  Hard Fix for a design flaw
+  const { setDocument } = useContext<CollectionContextType>(
+    CollectionContext as unknown as React.Context<CollectionContextType>
+  );
+  useEffect(() => {
+    setDocument("exercises-easy");
+  });
+  // 
   const backBtn = (
     <div className="back-btn">
       <Link to="/exercises">
-        <button>Exercitii</button>
+        <button type="button">Exercitii</button>
       </Link>
     </div>
   );
 
   return (
     <>
-      <Header backButton={backBtn} />
+      <Header backButton={backBtn} logInBtn={true} />
       <main className="landing-main">
         <div className="container-left">
           {" "}

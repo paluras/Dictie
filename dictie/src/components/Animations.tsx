@@ -1,4 +1,4 @@
-import React from 'react';
+
 import BlobOneLeft from './animations/BlobSvg1';
 import BlobRight from './animations/BlobSvg3';
 import BlobTwoLeft from './animations/BlobSvg2';

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import handleVoiceInput from "../utils/handleVoice.tsx";
 import addAnimation from "../utils/addAnimation.tsx";
 import { useSetFeeling } from "../hooks/useSetFeeling.tsx";
@@ -68,7 +68,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
 
   const backBtn = (
     <Link to="/exercises">
-      <button>Back</button>
+      <button type="button">Back</button>
     </Link>
   );
 
@@ -83,7 +83,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   return (
     <>
       <Animations animationKey={animationKey} />
-      <Header backButton={backBtn} />
+      <Header backButton={backBtn} logInBtn={false} />
       <main>
         <ScoreBoard questions={questions} userScore={userScore} />
         {/* IF THE EXERCISE IS OVER = DISPLAY END */}
@@ -143,6 +143,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
             <div className="container-btns">
               {" "}
               <button
+                type="button"
                 style={{ display: speechEnd ? "flex" : "none" }}
                 className="start-btn"
                 onClick={handleVoiceInputCallback}
@@ -150,6 +151,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
                 Porniți Înregistrarea Vocală
               </button>
               <button
+                type="button"
                 style={{ display: speechEnd ? "none" : "flex" }}
                 className="stop"
               >
