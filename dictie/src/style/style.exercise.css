@@ -51,7 +51,7 @@ li:hover {
 
   & a{
     all: unset;
-    
+    width: 100%;
   }
   
   

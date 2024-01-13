@@ -2,15 +2,11 @@
 import Header from "../components/Header";
 import "../style/style.exercise.css";
 import ExerciseList from "../components/exercise/ExerciseList";
-
 import { useContext  } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { CollectionContext } from "../context/CollectionContext";
+import { CollectionContext, CollectionContextType } from "../context/CollectionContext";
+import ExerciseListPersonal from "../components/exercise/ExerciseListPersonal";
 
-type CollectionContextType = {
-  document: string;
-  setDocument: (doc: string) => void;
-};
 const ExercisesPage: React.FC = () => {
   const user = useContext(AuthContext);
   const { document, setDocument } = useContext<CollectionContextType>(
@@ -26,7 +22,7 @@ const ExercisesPage: React.FC = () => {
           <ul>
             <li onClick={() => setDocument("exercises-easy")}>Usor</li>
             <li onClick={() => setDocument("exercises-mid")}>Mediu</li>
-            <li onClick={() => setDocument("exercises-hard")}>Greu</li>
+            <li onClick={() => setDocument("personal-ex")}>Personal</li>
           </ul>
         </div>
         <div className="right-main">
@@ -35,8 +31,9 @@ const ExercisesPage: React.FC = () => {
           {user
             ? document == "exercises-mid" && <ExerciseList title="Mediu" />
             : document == "exercises-mid" && <h1>Log in to unlock</h1>}
-            { 
-             document == "exercises-hard" && <h1>Coming soon</h1>}
+          {user
+            ? document == "personal-ex" && <ExerciseListPersonal userId = {user.uid} />
+            : document == "personal-ex" && <h1>Log in to Create personal exercises</h1>}
         </div>
       </div>
     </div>

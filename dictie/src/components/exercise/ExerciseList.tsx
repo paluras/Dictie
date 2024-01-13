@@ -7,9 +7,10 @@ import {
   CollectionContextType,
 } from "../../context/CollectionContext";
 import "../../style/style.exercise.css";
-import { useFetchExercises, ExerciseList } from "../../hooks/useFetchExercises";
-import { useFetchVisited } from "../../hooks/useFetchVisited";
+import { useFetchExercises, ExerciseList ,useFetchVisited  } from "../../hooks/useFetchHooks";
 import { useState, useEffect,useContext } from "react";
+
+
 
 const ExercisesList: React.FC<{ title: string }> = ({ title }) => {
   const user = useContext(AuthContext);
@@ -17,7 +18,6 @@ const ExercisesList: React.FC<{ title: string }> = ({ title }) => {
   const [exercises, setExercises] = useState<ExerciseList[]>([]);
   const fetchedExercises = useFetchExercises();
   const visitedLinks = useFetchVisited();
-console.log(fetchedExercises);
 
   useEffect(() => {
     const localStorageExercises = localStorage.getItem(document);

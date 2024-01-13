@@ -9,7 +9,6 @@ const ExerciseQuestions: React.FC<ExerciseQuestionsProps> = ({
   questions,
   index,
 }) => {
-  // Add your component logic here
 
   return (
     <div className="container-given-text">

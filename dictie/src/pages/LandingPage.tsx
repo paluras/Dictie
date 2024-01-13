@@ -26,7 +26,7 @@ const LandingPage: React.FC = () => {
   const backBtn = (
     <div className="back-btn">
       <Link to="/exercises">
-        <button type="button">Exercitii</button>
+        <button type="button">Exerciții</button>
       </Link>
     </div>
   );
@@ -62,7 +62,7 @@ const LandingPage: React.FC = () => {
                 </svg>
               </span>
 
-              <Link to="/exercises/0">Incearca!</Link>
+                <Link to="/exercises/0">Încearcă!</Link>
             </button>
             <svg
               className="anim-two"

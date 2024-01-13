@@ -260,6 +260,29 @@ max-width: 200px;
 
 }
 
+.element{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+  width: 100%;
+  justify-content: space-between;
+
+
+  & a{
+    width: 100%;
+  }
+   & li{
+    width: 100%;
+   }
+
+   & .personal{
+    width: 100%;
+   }
+}
+
+
 @media (max-width: 780px) {
   .rectangle,
   .blob-one,
@@ -271,6 +294,7 @@ max-width: 200px;
   .half-ring {
     scale: 0.6;
   }
+  
 }
 
 @media (max-width: 550px) {

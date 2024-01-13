@@ -1,0 +1,36 @@
+.create-exercise-label{
+    padding: 40px 0 0 0 ;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    & textarea{
+        width: 70%;
+        background-color: #fff;
+        color: var(--text);
+        height: 50px;
+        resize: none;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1.2em;
+    }
+    & input{
+        font-family: monospace;
+        width: 70%;
+        background-color: #fff;
+        color: var(--text);
+        height: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1.2em;
+    }
+}
+
+

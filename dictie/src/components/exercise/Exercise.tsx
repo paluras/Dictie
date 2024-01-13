@@ -1,4 +1,4 @@
-import { useFetchQuestion } from "../../hooks/useFetchQuestions.tsx";
+import { useFetchQuestion } from "../../hooks/useFetchHooks.tsx";
 import VoiceInput from "../../pages/VoiceInput.tsx";
 
 function Exercise() {

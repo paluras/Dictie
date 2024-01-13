@@ -63,6 +63,18 @@ const Header: React.FC<HeaderProps> = ({
     );
   };
 
+
+  const CreateExercise = () => {
+    return(
+      <>
+      <Link to="/create-exercise">
+        <button type="button">Creează exercițiu</button>
+      </Link>
+      </>
+    )
+  }
+
+
   return (
     <header>
       <Link style={{ color: "#1a1908" }} to="/">
@@ -73,8 +85,9 @@ const Header: React.FC<HeaderProps> = ({
         {backButton}
     
         {!loggedIn && logInBtn  && <LogInBtn />}
-
+        {loggedIn && logInBtn && <CreateExercise />}
         {loggedIn && logInBtn && <LogOutBtn />}
+      
    
       </div>
     </header>

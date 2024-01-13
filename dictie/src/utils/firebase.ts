@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 // import { onAuthStateChanged } from "firebase/auth";
 
-import { doc, setDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc ,setDoc, arrayUnion } from "firebase/firestore";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -59,5 +59,35 @@ export const setFirebaseUserArray = async (userId: string, idExercise: string[])
     console.error('Error setting array for user', error);
     throw error;
   }
+}
+
+
+export const setFirebaseCreatedArray = async (userId: string, exercise: { id: string, arrayValue: string[], title: string }) => {
+  const db = getFirestore(app);
+  try {
+      await setDoc(doc(db, 'personal-ex', userId, 'exercises', exercise.id), exercise);
+      console.log('Data set successfully');
+  } catch (error) {
+      console.error('Error setting data: ', error);
+      throw error;
+  }
 };
+
+
+export const getFirebaseCreatedArray = async (userId: string, exerciseId: string) => {
+  const db = getFirestore(app);
+  try {
+      const docRef = doc(db, 'personal-ex', userId, 'exercises', exerciseId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+      } else {
+          console.log("No such document!");
+      }
+  } catch (error) {
+      console.error('Error getting document:', error);
+  }
+};
+
 
