@@ -6,13 +6,13 @@ import "../style/style.animations.css";
 import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
-import { Link } from "react-router-dom";
 import percentageFunc from "../utils/percentCalc.tsx";
 import manageScore from "../utils/manageScore.tsx";
 import ScoreBoard from "../components/exercise/ScoreBoard.tsx";
 import { useScoreBoard } from "../hooks/useScoreBoard.tsx";
 import ExerciseFinish from "../components/exercise/ExerciseFinish.tsx";
 import ExerciseQuestions from "../components/exercise/ExerciseQuestions.tsx";
+import BackBtn from "../components/BackBtn.tsx";
 
 interface VoiceInputProps {
   questions: string[];
@@ -23,7 +23,6 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   const [spokenText, setSpokenText] = useState<string>("");
   const [speechEnd, setSpeechEnd] = useState<boolean>(true);
   const [animationKey, setAnimationKey] = useState<number>(0);
-
   const index = useRef<number>(0);
   const [feeling, setFeeting] = useState<string>("😊 Sa incepem");
   const similar = percentageFunc(spokenText, questions[index.current]);
@@ -66,11 +65,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
     }, 500);
   }, [speechEnd]);
 
-  const backBtn = (
-    <Link to="/exercises">
-      <button type="button">Back</button>
-    </Link>
-  );
+ 
 
   const handleVoiceInputCallback = () => {
     handleVoiceInput({
@@ -83,7 +78,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
   return (
     <>
       <Animations animationKey={animationKey} />
-      <Header backButton={backBtn} logInBtn={false} />
+      <Header backButton={<BackBtn />} logInBtn={false} />
       <main className="main-exercise">
         <ScoreBoard questions={questions} userScore={userScore} />
         {/* IF THE EXERCISE IS OVER = DISPLAY END */}

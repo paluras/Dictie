@@ -1,10 +1,10 @@
 import "../style/style.createExercise.css";
 import { setFirebaseCreatedArray } from "../utils/firebase";
-import { Link } from "react-router-dom";
 import { v4 } from "uuid"; // import uuid to generate unique id
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Header from "../components/Header";
+import BackBtn from "../components/BackBtn";
 const CreateExercise: React.FC = () => {
   const user = useContext(AuthContext);
   const dialog = document.querySelector("dialog");
@@ -39,13 +39,7 @@ const CreateExercise: React.FC = () => {
     dialog?.showModal();
   };
 
-  const backBtn = (
-    <div className="back-btn">
-      <Link to="/exercises">
-        <button type="button">Exercitii</button>
-      </Link>
-    </div>
-  );
+
 
   const dialogBox = (
     <dialog>
@@ -60,7 +54,7 @@ const CreateExercise: React.FC = () => {
 
   return (
     <>
-      <Header backButton={backBtn} logInBtn={true} />
+      <Header backButton={<BackBtn />} logInBtn={true} />
       {dialogBox}
       <form action="post" onSubmit={handleSubmit}>
         <label className="create-exercise-label">

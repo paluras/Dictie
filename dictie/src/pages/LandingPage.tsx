@@ -11,6 +11,7 @@ import {
 } from "../context/CollectionContext";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import BackBtn from "../components/BackBtn";
 
 const LandingPage: React.FC = () => {
   //  Hard Fix for a design flaw
@@ -21,17 +22,11 @@ const LandingPage: React.FC = () => {
     setDocument("exercises-easy");
   });
   //
-  const backBtn = (
-    <div className="back-btn">
-      <Link to="/exercises">
-        <button type="button">Exerciții</button>
-      </Link>
-    </div>
-  );
+ 
 
   return (
     <>
-      <Header backButton={backBtn} logInBtn={true} />
+      <Header backButton={<BackBtn />} logInBtn={true} />
       <main>
         <section className="landing-main">
           <section className="container-left">
