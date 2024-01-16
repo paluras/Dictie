@@ -84,7 +84,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
     <>
       <Animations animationKey={animationKey} />
       <Header backButton={backBtn} logInBtn={false} />
-      <main>
+      <main className="main-exercise">
         <ScoreBoard questions={questions} userScore={userScore} />
         {/* IF THE EXERCISE IS OVER = DISPLAY END */}
         {index.current === questions.length ? (
@@ -167,7 +167,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ questions }) => {
           </div>
         )}
       </main>
-      <footer></footer>
+     
     </>
   );
 };
