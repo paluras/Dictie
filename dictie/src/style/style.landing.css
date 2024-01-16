@@ -1,9 +1,6 @@
 .landing-main {
   display: flex;
 
-  flex-direction: row;
-  align-items: start;
-  justify-content: start;
   text-align: start;
   padding: 0 0px;
   height: calc(100vh - 90px);
