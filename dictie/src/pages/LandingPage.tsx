@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import "../style/style.landing.css";
 import imgPreview from "../assets/img-preview.png";
-import "../style/style.animations.css";
-import "./../index.css";
+
 import { useContext, useEffect } from "react";
 import {
   CollectionContext,
@@ -22,7 +20,6 @@ const LandingPage: React.FC = () => {
     setDocument("exercises-easy");
   });
   //
- 
 
   return (
     <>

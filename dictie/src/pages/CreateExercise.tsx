@@ -1,4 +1,3 @@
-import "../style/style.createExercise.css";
 import { setFirebaseCreatedArray } from "../utils/firebase";
 import { v4 } from "uuid"; // import uuid to generate unique id
 import { useContext } from "react";
