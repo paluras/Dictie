@@ -86,16 +86,16 @@
   }
  
  
-  @media (max-width: 780px) {
+   @media (max-width: 780px) {
     .rectangle,
     .blob-one,
     .blob-right,
     .blob-two,
     .triangle {
-      transform: scale(0.8);
+      scale: 0.8;
     }
     .half-ring {
-      transform: scale(0.6);
+      scale: 0.6;
     }
     
   }
@@ -106,7 +106,7 @@
   
     .blob-two,
     .triangle {
-      transform: scale(0.5);
+      scale: 0.5;
     }
     .rectangle,
     .triangle {
@@ -114,7 +114,7 @@
     }
   
     .blob-right {
-      transform: scale(0.5);
+      scale: 0.5;
       position: absolute;
       right: -80px;
       top: -70px;
