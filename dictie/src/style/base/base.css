@@ -1,0 +1,45 @@
+h1, h2, h3, h4, h5 {
+    font-family: 'Poppins';
+    font-weight: 700;
+  }
+  
+  html {font-size: 100%;} /* 16px */
+  
+   h1 {font-size: 3rem;} 
+  
+  
+  h2 {font-size: 1.5rem; /* 40.32px */}
+  
+  h3 {font-size:1rem; /* 30.24px */}
+  
+  h4 {font-size: 1.421rem; /* 22.72px */}
+  
+  h5 {font-size: 1.066rem; /* 17.12px */}
+  
+  small {font-size: 0.600rem; /* 9.6px */}
+  
+  button{
+    font-family: 'Poppins';
+  }
+  *{
+    margin: 0;
+
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: background-color 500ms ease-in;
+    font-family: 'Poppins';
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    padding: 0 20px;
+   
+  }

@@ -1,104 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
 
-body {
-  font-family: 'Poppins';
-  font-weight: 400;
-  overflow-x: hidden;
-}
-
-
-h1, h2, h3, h4, h5 {
-  font-family: 'Poppins';
-  font-weight: 700;
-}
-
-html {font-size: 100%;} /* 16px */
-
- h1 {font-size: 3rem;} 
-
-
-h2 {font-size: 1.5rem; /* 40.32px */}
-
-h3 {font-size:1rem; /* 30.24px */}
-
-h4 {font-size: 1.421rem; /* 22.72px */}
-
-h5 {font-size: 1.066rem; /* 17.12px */}
-
-small {font-size: 0.600rem; /* 9.6px */}
-
-button{
-  font-family: 'Poppins';
-}
-
-@media (max-width: 1000px) {
-  h1  {
-    font-size: 2.5rem;
-  }
-  h2{
-    font-size: 16px;
-  }
-  h3{
-    font-size:14px;
-  }
-}
-@media (max-width:780px) {
-  h1{
-    font-size: 2rem;
-  }
-
-}
-@media (max-width:500px) {
-  h1{
-    
-    font-size: 1.75rem;
-  }
-}
-@media (max-width:400px) {
-  h1 ,.score-board{
-    font-size: 1.5rem;
-  }
-}
-@media (max-width:350px) {
-  h1{
-    font-size: 1.25rem;
-  }
-}
- 
-
-:root {
-  margin: 0;
-  --text: #1a1908;
-  --text-second:#252412bd;
-  --background: #fafaf0;
-  --primary: #d0deff;
-  --secondary: #E5E580;
-  --accent: #79d2c4;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-    --spring-easing: linear(0, 0.11 5%, 0.78 21%, 1, 1.04 42%, 1 69%, 1);
- 
-  color-scheme: light dark;
-  color: var(--text);
-  background-color: var(--background);
- 
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* BASE-- */
+@import url(./style/base/variables.css);
+@import url(./style/base/base.css);
+@import url(./style/base/media_queries.css);
+@import url(./style/base/animations.css);
 
 
 
-body{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  /* overflow: hidden; */
-  margin: 0;
- 
-  transition: background-color 500ms ease-in;
-}
+/* COMPONENTS */
+@import url(./style/components/nav.css);
+@import url(./style/components/footer.css);
+@import url(./style/components/card.css);
+@import url(./style/components/buttons.css);
+@import url(./style/components/exercise_svg.css);
+@import url(./style/components/create_exercise.css);
+@import url(./style/components/scoreboard.css);
+@import url(./style/components/arrows.css);
+
+
+/* LAYOUT */
+@import url(./style/layout/exercise.css);
+
+
+
+/* QUICK FIX */
+@import url(./style/shame.css)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,67 @@
+.main-exercise{
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+  
+  }
+
+  .container-mid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+    z-index: 100;
+  }
+
+
+  .spoken-text {
+    z-index: 100;
+  }
+  .spoken {
+    color: var(--text-second);
+    margin: 0 0;
+  }
+  .container-given-text {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    text-align: center;
+    height: 55cqh;
+    width: 90vw;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  
+    word-break: break-word;
+  
+    text-wrap: balance;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .container-given-text::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+  /* SHOULD NOT BE HERE */
+  
+  .animated-text {
+    animation: appearText 1s cubic-bezier(0.66, 0.07, 0.51, 1.52);
+  
+    transition: 1s;
+    z-index: 1000;
+  }
+  
+  .slide-in {
+    animation: disappearText 500ms cubic-bezier(0.66, 0.07, 0.51, 1.52);
+    transform: translateY(400px);
+  }
+  
+
+  .similar-container{
+    max-width: 200px;
+    
+    }

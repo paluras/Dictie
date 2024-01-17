@@ -1,0 +1,91 @@
+
+/* MAIN BTN */
+button {
+    background-color: var(--primary);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: var(--text);
+    font-weight: 500;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: 220ms cubic-bezier(0.66, 0.07, 0.51, 1.52);
+  }
+  
+  button:hover {
+    scale: 1.08;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
+  }
+  /* ------------ */
+
+
+
+  /* Exercise page btns */
+
+  .start-btn {
+    display: flex;
+    background-color: var(--secondary);
+    width: 250px;
+    justify-content: center;
+  }
+  
+  .stop {
+    display: flex;
+    width: 250px;
+    justify-content: center;
+  }
+  /* ------------ */
+
+
+  
+
+/* Custom landing btn */
+
+.btn-container {
+    position: relative;
+    width: 60%;
+  }
+  
+  .big-btn {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    padding: 0;
+    overflow: visible;
+    position: relative;
+  
+    & span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--accent);
+      width: 5%;
+      height: 100%;
+      padding: 0px 20px;
+  
+      & .arrow {
+        height: 32px;
+        width: 32px;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+    & a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0px;
+      background-color: var(--primary);
+      width: 100%;
+      height: 100%;
+      padding: 0px 20px;
+    }
+  }
+  
+  .big-btn:hover .arrow {
+    transform: rotate(-33deg);
+  }
+  /* ------------ */
+

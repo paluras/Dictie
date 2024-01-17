@@ -2,8 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import handleVoiceInput from "../utils/handleVoice.tsx";
 import addAnimation from "../utils/addAnimation.tsx";
 import { useSetFeeling } from "../hooks/useSetFeeling.tsx";
-import "../style/style.animations.css";
-import "../style/App.css";
 import Header from "../components/Header.tsx";
 import Animations from "../components/Animations.tsx";
 import percentageFunc from "../utils/percentCalc.tsx";
