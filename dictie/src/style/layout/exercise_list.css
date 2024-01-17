@@ -31,7 +31,7 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
-  overflow: auto;
+  overflow: visible;
 
   position: relative;
   left: 20%;
@@ -51,6 +51,11 @@
     width: 100%;
   }
 }
+.visited {
+  background-color: var(--primary);
+  color: var(--text-second);
+  text-decoration: none;
+}
 
 @media (max-width: 780px) {
   .exercise-main {
@@ -67,12 +72,21 @@
   }
 }
 
-& ul .visited:before {
-  content: "✓";
+
+@media (max-width: 500px) {
+  .exercise-main {
+    display: flex;
+    flex-direction: column;
+  }
+  .left-bar {
+    width: 40%;
+  }
+
+  .right-main {
+    width: calc(60% - 40px);
+    left: 40%;
+  }
 }
 
-.visited {
-  background-color: var(--primary);
-  color: var(--text-second);
-  text-decoration: none;
-}
+
+

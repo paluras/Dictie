@@ -156,9 +156,13 @@
   .score-board {
     font-size: 1.5rem;
   }
+ 
+
+  .container-left{
+    padding: 0px;
+    width: 100%;
+  }
 }
 @media (max-width: 350px) {
-  h1 {
-    font-size: 1.25rem;
-  }
+
 }

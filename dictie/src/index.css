@@ -21,6 +21,8 @@
 
 /* LAYOUT */
 @import url(./style/layout/exercise.css);
+@import url(./style/layout/exercise_list.css);
+@import url(./style/layout/landing.css);
 
 
 

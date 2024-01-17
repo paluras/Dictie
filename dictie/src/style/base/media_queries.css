@@ -30,6 +30,10 @@
     h1{
       font-size: 1.25rem;
     }
+    button{
+      font-size: 0.75rem;
+      padding: 0px 0px;
+    }
   }
 
 
