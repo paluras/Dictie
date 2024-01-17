@@ -92,10 +92,10 @@
     .blob-right,
     .blob-two,
     .triangle {
-      scale: 0.8;
+      transform: scale(0.8);
     }
     .half-ring {
-      scale: 0.6;
+      transform: scale(0.6);
     }
     
   }
@@ -106,7 +106,7 @@
   
     .blob-two,
     .triangle {
-      scale: 0.5;
+      transform: scale(0.5);
     }
     .rectangle,
     .triangle {
@@ -114,7 +114,7 @@
     }
   
     .blob-right {
-      scale: 0.5;
+      transform: scale(0.5);
       position: absolute;
       right: -80px;
       top: -70px;
