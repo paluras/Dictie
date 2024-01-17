@@ -1,6 +1,5 @@
 
 import Header from "../components/Header";
-import "../style/style.exercise.css";
 import ExerciseList from "../components/exercise/ExerciseList";
 import { useContext  } from "react";
 import { AuthContext } from "../context/AuthContext";

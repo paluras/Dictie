@@ -6,7 +6,6 @@ import {
   CollectionContext,
   CollectionContextType,
 } from "../../context/CollectionContext";
-import "../../style/style.exercise.css";
 import { useFetchExercises, ExerciseList ,useFetchVisited  } from "../../hooks/useFetchHooks";
 import { useState, useEffect,useContext } from "react";
 
